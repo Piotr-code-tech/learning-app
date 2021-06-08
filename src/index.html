@@ -2,10 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Learning App</title>
+    <h1>Learning App</h1>
 </head>
 <body>
-<h2>Learning App</h2>
-
+<form>  <!--I don't know what to do with metod attribut, it should be get or post now I don't write that -->
+    <div>
+        <label for="value">Please enter the value :</label>
+        <input type="number" name="value" id="value" min="1" placeholder="Write here"  required>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </div>
+    <b>Choose value with you want to calculate :</b>
+    <div>
+        <label for="g_value">Gross value</label>
+        <input type="radio" name="g/n_value" id="g_value" value="g_value">
+        <label for="n_value">Net value</label>
+        <input type="radio" name="g/n_value" id="n_value" value="n_value">
+    </div>
+    <b>Result :</b>
+    <div>
+        <label>Gross value :</label><br>
+        <label>Net value :</label>
+    </div>
+</form>
 </body>
 </html>
