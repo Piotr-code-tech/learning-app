@@ -5,27 +5,29 @@
     <h1>Learning App</h1>
 </head>
 <body>
-<form>  <!--I don't know what to do with metod attribut, it should be get or post now I don't write that -->
+<div>
     <div>
-        <label for="value">Please enter the value :</label>
-        <input type="number" name="value" id="value" min="1" placeholder="Write here"  required>
+        <label for="value">Value :</label>
+        <input type="number" name="value" id="value" min="1" placeholder="Value"  required>
     </div>
     <div>
-        <button type="submit">Submit</button>
-        <button type="reset">Reset</button>
+        <button>Submit</button>
+        <button>Reset</button>
     </div>
-    <b>Choose value with you want to calculate :</b>
+    <strong>Which value do you want to calculate :</strong>
     <div>
         <label for="g_value">Gross value</label>
         <input type="radio" name="g/n_value" id="g_value" value="g_value">
         <label for="n_value">Net value</label>
         <input type="radio" name="g/n_value" id="n_value" value="n_value">
     </div>
-    <b>Result :</b>
+    <strong>Result :</strong>
     <div>
-        <label>Gross value :</label><br>
+        <label>Gross value :</label>
+        <span class="gross"></span><br>
         <label>Net value :</label>
+        <span class="net"></span>
     </div>
-</form>
+</div>
 </body>
 </html>
