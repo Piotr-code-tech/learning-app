@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <h1>Learning App</h1>
+</head>
+<body>
+<div>
+    <div>
+        <label for="value">Value :</label>
+        <input type="number" name="value" id="value" min="1" placeholder="Value" required>
+    </div>
+    <div>
+        <button class="btn-submit">Submit</button>
+        <button class="btn-reset">Reset</button>
+    </div>
+    <strong>Which value do you want to calculate :</strong>
+    <div>
+        <label for="g_value">Gross value</label>
+        <input type="radio" name="g/n_value" id="g_value" value="g_value">
+        <label for="n_value">Net value</label>
+        <input type="radio" name="g/n_value" id="n_value" value="n_value">
+    </div>
+    <strong>Result :</strong>
+    <div>
+        <label>Gross value :</label>
+        <span class="gross"></span><br>
+        <label>Net value :</label>
+        <span class="net"></span>
+    </div>
+</div>
+</body>
+</html>
