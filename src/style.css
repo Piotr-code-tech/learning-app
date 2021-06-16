@@ -1,8 +1,49 @@
-#calculator {
+
+body{
+font-family: Arial;
+font-size: 100%;
+background-color: darkkhaki;
+}
+
+.main-head{
+display: flex;
+flex-direction: column;
+border-radius: 20px;
+background-color: silver;
+margin: 1% 1% 1%;
+}
+
+.main-head h1{
+font-size: 250%;
+margin-bottom: 0;
+margin-left: 1%;
+}
+
+.main-head p{
+font-size: 150%;
+margin-top: 0;
+margin-left: 1%;
+}
+
+.calculator{
     display: flex;
-    width: 300px;
-    height: 300px;
     flex-direction: column;
-    justify-content: space-between;
+    height: 50vh;
     align-items: center;
+    justify-content: center;
+    width: 100vw;
+}
+
+.ipt-head{
+font-weight: bold;
+/*border: 1px solid red;*/
+margin-bottom: 5%;
+}
+
+.chse-head{
+font-weight: bold;
+}
+
+.rslt-head{
+font-weight: bold;
 }

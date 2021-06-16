@@ -3,32 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+    <title>Net/Gross value calculator</title>
 </head>
 <body>
-<div id="calculator">
-        <h1>Learning App</h1>
+<div class="main-head">
+    <h1>Net/Gross value calculator</h1>
+    <p>This is app for learning purposes</p>
+</div>
+
+<div class="calculator">
         <div>
-            <label for="value">Value :</label>
-            <input type="number" name="value" id="value" min="1" placeholder="Value" required>
+            <p class="ipt-head">Please enter the value :</p>
         </div>
         <div>
+            <input type="number" name="value" id="value" min="1" placeholder="Value" required>
             <button class="btn-submit">Submit</button>
             <button class="btn-reset">Reset</button>
         </div>
-        <p>Which value do you want to calculate :</p>
+        <div>
+            <p class="chse-head">Which value do you want to calculate :</p>
+        </div>
         <div>
             <label for="g_value">Gross value</label>
             <input type="radio" name="out_value" id="g_value" value="g_value">
             <label for="n_value">Net value</label>
             <input type="radio" name="out_value" id="n_value" value="n_value">
         </div>
-        <p>Result :</p>
         <div>
-            <label>Gross value :</label>
-            <span class="gross"></span><br>
+            <p class="rslt-head">Result :</p>
         </div>
         <div>
-            <label>Net value :</label>
+            <p>Gross value :</p>
+            <span class="gross"></span>
+        </div>
+        <div>
+            <p>Net value :</p>
             <span class="net"></span>
         </div>
 </div>
