@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu|Lora">
     <title>Net/Gross value calculator</title>
 </head>
 <body>
@@ -13,7 +14,7 @@
 
 <div class="calculator">
         <div>
-            <p class="ipt-head">Please enter the value :</p>
+            <p class="impt-head">Please enter the value :</p>
         </div>
         <div>
             <input type="number" name="value" id="value" min="1" placeholder="Value" required>
@@ -29,17 +30,21 @@
             <label for="n_value">Net value</label>
             <input type="radio" name="out_value" id="n_value" value="n_value">
         </div>
-        <div>
-            <p class="rslt-head">Result :</p>
+        <div class="rslt-head">
+            <p>Result :</p>
         </div>
-        <div>
+        <div class="out-gross">
             <p>Gross value :</p>
             <span class="gross"></span>
         </div>
-        <div>
+        <div class="out-net">
             <p>Net value :</p>
             <span class="net"></span>
         </div>
 </div>
+<footer>
+    <span>Author: Piotr Kowalski</span>
+    <span>Adress E-mail: <a href="mailto:piotrkowalski056@gmail.com" class="email">piotrkowalski056@gmail.com</a></span>
+</footer>
 </body>
 </html>

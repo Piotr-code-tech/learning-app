@@ -1,43 +1,45 @@
-
-body{
-font-family: Arial;
-font-size: 100%;
-background-color: darkkhaki;
+*{
+margin: 0;
+padding: 0;
 }
 
+body{
+font-family: Lora, serif;
+font-size: 1vw;
+background-color: darkkhaki;
+}
 .main-head{
 display: flex;
 flex-direction: column;
-border-radius: 20px;
 background-color: silver;
-margin: 1% 1% 1%;
 }
 
 .main-head h1{
-font-size: 250%;
+font-size: 3vw;
+font-family: Ubuntu, sans-serif;
 margin-bottom: 0;
-margin-left: 1%;
+margin-top: 1%;
+margin-left: 5%;
 }
 
 .main-head p{
-font-size: 150%;
-margin-top: 0;
-margin-left: 1%;
+font-size: 1.5vw;
+margin-top: 0%;
+margin-bottom: 1%;
+margin-left: 5%;
 }
 
 .calculator{
     display: flex;
     flex-direction: column;
-    height: 50vh;
+    height: 30vh;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     width: 100vw;
 }
 
-.ipt-head{
+.impt-head{
 font-weight: bold;
-/*border: 1px solid red;*/
-margin-bottom: 5%;
 }
 
 .chse-head{
@@ -47,3 +49,10 @@ font-weight: bold;
 .rslt-head{
 font-weight: bold;
 }
+
+.email{
+text-decoration: none;
+}
+
+
+
