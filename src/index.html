@@ -2,32 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <h1>Learning App</h1>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu|Lora">
+    <title>Net/Gross value calculator</title>
 </head>
 <body>
-<div>
-    <div>
-        <label for="value">Value :</label>
-        <input type="number" name="value" id="value" min="1" placeholder="Value" required>
-    </div>
-    <div>
-        <button class="btn-submit">Submit</button>
-        <button class="btn-reset">Reset</button>
-    </div>
-    <strong>Which value do you want to calculate :</strong>
-    <div>
-        <label for="g_value">Gross value</label>
-        <input type="radio" name="out_value" id="g_value" value="g_value">
-        <label for="n_value">Net value</label>
-        <input type="radio" name="out_value" id="n_value" value="n_value">
-    </div>
-    <strong>Result :</strong>
-    <div>
-        <label>Gross value :</label>
-        <span class="gross"></span><br>
-        <label>Net value :</label>
-        <span class="net"gi></span>
-    </div>
+<div class="main-head">
+    <h1>Net/Gross value calculator</h1>
+    <p>This is app for learning purposes</p>
 </div>
+
+<div class="calculator">
+        <div>
+            <p class="impt-head">Please enter the value :</p>
+        </div>
+        <div>
+            <input type="number" name="value" id="value" min="1" placeholder="Value" required>
+            <button class="btn-submit">Submit</button>
+            <button class="btn-reset">Reset</button>
+        </div>
+        <div>
+            <p class="chse-head">Which value do you want to calculate :</p>
+        </div>
+        <div>
+            <label for="g_value">Gross value</label>
+            <input type="radio" name="out_value" id="g_value" value="g_value">
+            <label for="n_value">Net value</label>
+            <input type="radio" name="out_value" id="n_value" value="n_value">
+        </div>
+        <div class="rslt-head">
+            <p>Result :</p>
+        </div>
+        <div class="out-gross">
+            <p>Gross value :</p>
+            <span class="gross"></span>
+        </div>
+        <div class="out-net">
+            <p>Net value :</p>
+            <span class="net"></span>
+        </div>
+</div>
+<footer>
+    <span>Author: Piotr Kowalski,</span>
+    <span>Adress E-mail: <a href="mailto:piotrkowalski056@gmail.com" class="email">piotrkowalski056@gmail.com</a></span>
+</footer>
 </body>
 </html>

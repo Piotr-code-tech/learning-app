@@ -20,4 +20,3 @@ It will be a gross/net values calculator with additional VAT taxes. App also sup
         - javascript file runs alert notification on file load
 
 
-
