@@ -1,13 +1,16 @@
-const buttons = [document.querySelector(".btn-submit"), document.querySelector(".btn-reset")];
+const submitButton = document.querySelector(".btn-submit");
+const resetButton = document.querySelector(".btn-reset");
 
-function sub_event(){
+const submitEvent = () =>
+{
 alert('Submit button was clicked');
 }
 
-function rst_event(){
+const resetEvent = () =>
+{
 alert('Reset button was clicked');
 }
 
-buttons[0].addEventListener('click', sub_event);
-buttons[1].addEventListener('click', rst_event);
+submitButton.addEventListener('click', submitEvent);
+resetButton.addEventListener('click', resetEvent);
 
