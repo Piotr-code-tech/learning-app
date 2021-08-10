@@ -18,5 +18,7 @@ It will be a gross/net values calculator with additional VAT taxes. App also sup
     2. Choose color theme for your app and add colors to background and items on the page
     3. Attach separate JavaScript file to your index.html
         - javascript file runs alert notification on file load
+        - Read about and add prettier/formatter and ES Liner
+        
 
 
