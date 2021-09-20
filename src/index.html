@@ -1,52 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu|Lora">
-    <title>Net/Gross value calculator</title>
-</head>
-<body>
-<div class="main-head">
-    <h1>Net/Gross value calculator</h1>
-    <p>This is app for learning purposes</p>
-</div>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu|Lora">
+        <link rel="stylesheet" href="style.css">
+        <title>Net/Gross value calculator</title>
+    </head>
+    <body>
+        <div class="main-head">
+            <h1>Net/Gross value calculator</h1>
+            <p>This is app for learning purposes</p>
+        </div>
 
-<div class="calculator">
-        <div>
-            <p class="impt-head">Please enter the value :</p>
+        <div class="calculator">
+            <div>
+                <p class="input-head">Please enter the value :</p>
+            </div>
+            <div>
+                <input type="number" name="value" id="value" min="1" placeholder="Value" required>
+                <!-- change to 'Calculate' -->
+                <button class="btn-submit">Submit</button>
+                <button class="btn-reset">Reset</button>
+            </div>
+            <div>
+                <p class="choose-head">Which value do you want to calculate :</p>
+            </div>
+            <div>
+                <label for="g_value">Gross value</label>
+                <input type="radio" name="out_value" id="g_value" value="g_value">
+                <label for="n_value">Net value</label>
+                <input type="radio" name="out_value" id="n_value" value="n_value">
+            </div>
+            <div class="result-head">
+                <p>Result :</p>
+            </div>
+            <div class="out-gross">
+                <p>Gross value :</p>
+                <span class="gross"></span>
+            </div>
+            <div class="out-net">
+                <p>Net value :</p>
+                <span class="net"></span>
+            </div>
         </div>
-        <div>
-            <input type="number" name="value" id="value" min="1" placeholder="Value" required>
-            <button class="btn-submit">Submit</button>
-            <button class="btn-reset">Reset</button>
-        </div>
-        <div>
-            <p class="chse-head">Which value do you want to calculate :</p>
-        </div>
-        <div>
-            <label for="g_value">Gross value</label>
-            <input type="radio" name="out_value" id="g_value" value="g_value">
-            <label for="n_value">Net value</label>
-            <input type="radio" name="out_value" id="n_value" value="n_value">
-        </div>
-        <div class="rslt-head">
-            <p>Result :</p>
-        </div>
-        <div class="out-gross">
-            <p>Gross value :</p>
-            <span class="gross"></span>
-        </div>
-        <div class="out-net">
-            <p>Net value :</p>
-            <span class="net"></span>
-        </div>
-</div>
-<footer>
-    <span>Author: Piotr Kowalski,</span>
-    <span>Adress E-mail: <a href="mailto:piotrkowalski056@gmail.com" class="email">piotrkowalski056@gmail.com</a></span>
-</footer>
+        <footer>
+            <span>Author: Piotr Kowalski,</span>
+            <span>Email Address: <a href="mailto:piotrkowalski056@gmail.com" class="email">piotrkowalski056@gmail.com</a></span>
+        </footer>
 
-<script src="calculator.js"></script>
-</body>
+        <script src="calculator.js"></script>
+    </body>
 </html>
