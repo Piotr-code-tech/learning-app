@@ -1,8 +1,9 @@
-const submitButton = document.querySelector(".btn-submit");
-const resetButton = document.querySelector(".btn-reset");
-
-// const calculateValue = (value, option) => {
-//     return result number
+const submitButton = document.querySelector(".calculate");
+const resetButton = document.querySelector(".resetButton");
+var valueToCalculate = 0;
+var choosedOption;
+//const calculateValue = () => {
+//
 // }
 
 // const reset = () => {
@@ -12,8 +13,10 @@ const resetButton = document.querySelector(".btn-reset");
 // }
 
 const submitEvent = () => {
-    // call calculateValue
-    alert('Submit button was clicked');
+    valueToCalculate = document.querySelector("#value").value;
+    console.log(valueToCalculate);
+    choosedOption = document.querySelector('input[name="out_value"]:checked');
+    console.log(choosedOption.value);
 }
 
 const resetEvent = () => {
