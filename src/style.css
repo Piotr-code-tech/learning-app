@@ -59,6 +59,24 @@ footer {
     bottom: 0px;
     width:100%;
 }
-
-
+.out-gross {
+display: flex;
+flex-direction: row;
+justify-content : center;
+align-items: center;
+}
+.gross {
+margin-left : 5px;
+font-weight: bold;
+}
+.out-net {
+display: flex;
+flex-direction: row;
+justify-content : center;
+align-items: center;
+}
+.net {
+margin-left : 5px;
+font-weight: bold;
+}
 
