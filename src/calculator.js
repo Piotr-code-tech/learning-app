@@ -1,43 +1,51 @@
-const submitButton = document.querySelector(".calculate");
-const resetButton = document.querySelector(".resetButton");
+//--------------------Global Variables--------------------
+const calculateButton = document.querySelector(".calculateButton");
+//const resetButton = document.querySelector(".resetButton");
+const taxValue = 0.23;
 
-const calculateValue = (writtenValue, option) => {
-    var valueAfterCalculation;
-    if(option === "grossValue") {
-        valueAfterCalculation = writtenValue * 1.23;
-        console.log(valueAfterCalculation);
-        document.querySelector(".gross").innerHTML = valueAfterCalculation;
-        document.querySelector(".net").innerHTML = writtenValue;
+//--------------------Functions to calculations features--------------------
+const calculateValue = (writtenValue, choosedRadioButton) => {
+    let calculatedValue = 0;
+    if (choosedRadioButton === document.querySelector('input[id="grossRadioButton"]').value) {
+        calculatedValue = writtenValue * (1 + taxValue);
     }
-    else if (option === "netValue") {
-         valueAfterCalculation = writtenValue * 0.77;
-         console.log(valueAfterCalculation);
-         document.querySelector(".gross").innerHTML = writtenValue;
-         document.querySelector(".net").innerHTML = valueAfterCalculation;
+    else if (choosedRadioButton === document.querySelector('input[id="netRadioButton"]').value) {
+         calculatedValue = writtenValue * (1 - taxValue);
     }
+    return calculatedValue;
  }
 
+const displayResult = (resultValue, writtenValue, choosedRadioButton) => {
+   if (choosedRadioButton === document.querySelector('input[id="grossRadioButton"]').value) {
+        document.querySelector(".grossValue").innerHTML = resultValue;
+        document.querySelector(".netValue").innerHTML = writtenValue;
+   }
+   else if (choosedRadioButton === document.querySelector('input[id="netRadioButton"]').value) {
+        document.querySelector(".netValue").innerHTML = resultValue;
+        document.querySelector(".grossValue").innerHTML = writtenValue;
+   }
+}
+
+//--------------------Functions to reset features--------------------
 // const reset = () => {
 //     clears value, result and gross/net selection to defaults
 //
 //     return void;
 // }
 
-const submitEvent = () => {
-    var valueToCalculate;
-    var choosedOption;
-    valueToCalculate = document.querySelector("#value").value;
-    console.log(valueToCalculate);
-    choosedOption = document.querySelector('input[name="out_value"]:checked');
-    console.log(choosedOption.value);
-    calculateValue(Number(valueToCalculate),choosedOption.value);
+//--------------------Events from event listeners--------------------
+const calculateEvent = () => {
+let writtenValue = Number(document.querySelector("#writtenValue").value);
+let choosedRadioButton = document.querySelector('input[name="radioButton"]:checked').value;
+let resultValue = calculateValue(writtenValue, choosedRadioButton);
+displayResult(resultValue, writtenValue, choosedRadioButton);
 }
 
-const resetEvent = () => {
+//const resetEvent = () => {
     // call reset
-    alert('Reset button was clicked');
-}
+    //alert('Reset button was clicked');
+//}
 
-submitButton.addEventListener('click', submitEvent);
-resetButton.addEventListener('click', resetEvent);
-
+//--------------------Event listeners--------------------
+calculateButton.addEventListener('click', calculateEvent);
+//resetButton.addEventListener('click', resetEvent);
