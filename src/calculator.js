@@ -1,6 +1,6 @@
 //--------------------Global Variables--------------------
 const calculateButton = document.querySelector(".calculateButton");
-//const resetButton = document.querySelector(".resetButton");
+const resetButton = document.querySelector(".resetButton");
 const taxValue = 0.23;
 
 //--------------------Functions to calculations features--------------------
@@ -27,11 +27,13 @@ const displayResult = (resultValue, writtenValue, choosedRadioButton) => {
 }
 
 //--------------------Functions to reset features--------------------
-// const reset = () => {
-//     clears value, result and gross/net selection to defaults
-//
-//     return void;
-// }
+ const reset = () => {
+    document.querySelector("#grossRadioButton").checked = false;
+    document.querySelector("#netRadioButton").checked = false;
+    document.querySelector(".grossValue").innerHTML = "";
+    document.querySelector(".netValue").innerHTML = "";
+    document.querySelector("#writtenValue").value = "";
+ }
 
 //--------------------Events from event listeners--------------------
 const calculateEvent = () => {
@@ -41,11 +43,10 @@ let resultValue = calculateValue(writtenValue, choosedRadioButton);
 displayResult(resultValue, writtenValue, choosedRadioButton);
 }
 
-//const resetEvent = () => {
-    // call reset
-    //alert('Reset button was clicked');
-//}
+const resetEvent = () => {
+    reset();
+}
 
 //--------------------Event listeners--------------------
 calculateButton.addEventListener('click', calculateEvent);
-//resetButton.addEventListener('click', resetEvent);
+resetButton.addEventListener('click', resetEvent);
