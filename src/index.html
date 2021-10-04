@@ -7,45 +7,44 @@
         <title>Net/Gross value calculator</title>
     </head>
     <body>
-        <div class="main-head">
+        <div class="mainHeadContainer">
             <h1>Net/Gross value calculator</h1>
             <p>This is app for learning purposes</p>
         </div>
 
-        <div class="calculator">
+        <div class="calculatorContainer">
             <div>
-                <p class="input-head">Please enter the value :</p>
+                <p class="valueInputHead">Please enter the value :</p>
             </div>
             <div>
-                <input type="number" name="value" id="value" min="1" placeholder="Value" required>
-                <!-- change to 'Calculate' -->
-                <button class="btn-submit">Submit</button>
-                <button class="btn-reset">Reset</button>
+                <input type="number" name="value" id="writtenValue" min="1" placeholder="Value" required>
+                <button class="calculateButton">Calculate</button>
+                <button class="resetButton">Reset</button>
             </div>
             <div>
-                <p class="choose-head">Which value do you want to calculate :</p>
+                <p class="radioInputHead">Which value do you want to calculate :</p>
             </div>
             <div>
-                <label for="g_value">Gross value</label>
-                <input type="radio" name="out_value" id="g_value" value="g_value">
-                <label for="n_value">Net value</label>
-                <input type="radio" name="out_value" id="n_value" value="n_value">
+                <label>Gross value</label>
+                <input type="radio" id="grossRadioButton" name="radioButton" value="gross">
+                <label>Net value</label>
+                <input type="radio" id="netRadioButton" name="radioButton" value="net">
             </div>
-            <div class="result-head">
+            <div class="resultHead">
                 <p>Result :</p>
             </div>
-            <div class="out-gross">
-                <p>Gross value :</p>
-                <span class="gross"></span>
+            <div class="grossOutputContainer">
+                <p>Gross value : </p>
+                <span class="grossValue"></span>
             </div>
-            <div class="out-net">
-                <p>Net value :</p>
-                <span class="net"></span>
+            <div class="netOutputContainer">
+                <p>Net value : </p>
+                <span class="netValue"></span>
             </div>
         </div>
         <footer>
             <span>Author: Piotr Kowalski,</span>
-            <span>Email Address: <a href="mailto:piotrkowalski056@gmail.com" class="email">piotrkowalski056@gmail.com</a></span>
+            <span>Email Address: <a href="mailto:piotrkowalski056@gmail.com" class="emailAdress">piotrkowalski056@gmail.com</a></span>
         </footer>
 
         <script src="calculator.js"></script>
