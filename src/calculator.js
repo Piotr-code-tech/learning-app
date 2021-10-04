@@ -34,7 +34,6 @@ const displayResult = (resultValue, writtenValue, choosedRadioButton) => {
     document.querySelector(".netValue").innerHTML = "";
     document.querySelector("#writtenValue").value = "";
  }
-
 //--------------------Events from event listeners--------------------
 const calculateEvent = () => {
 let writtenValue = Number(document.querySelector("#writtenValue").value);
