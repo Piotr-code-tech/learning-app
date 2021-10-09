@@ -1,52 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
     <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu|Lora">
-        <link rel="stylesheet" href="style.css">
+        <meta charset = "UTF-8">
+        <link rel = "stylesheet" href = "https://fonts.googleapis.com/css?family=Ubuntu|Lora">
+        <link rel = "stylesheet" href = "style.css">
         <title>Net/Gross value calculator</title>
     </head>
     <body>
-        <div class="mainHeadContainer">
+        <div class = "mainHeadContainer">
             <h1>Net/Gross value calculator</h1>
             <p>This is app for learning purposes</p>
         </div>
-
-        <div class="calculatorContainer">
+        <div class = "calculatorContainer">
             <div>
-                <p class="valueInputHead">Please enter the value :</p>
+                <p class = "valueInputHead">Please enter the value :</p>
+            </div>
+            <div class = "inputContainer">
+                <input type = "number" name = "value" id = "writtenValue" min = "1" placeholder = "Value" required>
+                <button class = "calculateButton">Calculate</button>
+                <button class = "resetButton">Reset</button>
             </div>
             <div>
-                <input type="number" name="value" id="writtenValue" min="1" placeholder="Value" required>
-                <button class="calculateButton">Calculate</button>
-                <button class="resetButton">Reset</button>
+                <p class = "radioInputHead">Which value do you want to calculate :</p>
             </div>
-            <div>
-                <p class="radioInputHead">Which value do you want to calculate :</p>
-            </div>
-            <div>
+            <div class = "radioContainer">
                 <label>Gross value</label>
-                <input type="radio" id="grossRadioButton" name="radioButton" value="gross">
+                <input type = "radio" id = "grossRadioButton" name = "radioButton" value = "gross">
                 <label>Net value</label>
-                <input type="radio" id="netRadioButton" name="radioButton" value="net">
+                <input type = "radio" id = "netRadioButton" name = "radioButton" value = "net">
             </div>
-            <div class="resultHead">
+            <div class = "resultHead">
                 <p>Result :</p>
             </div>
-            <div class="grossOutputContainer">
+            <div class = "grossOutputContainer">
                 <p>Gross value : </p>
-                <span class="grossValue"></span>
+                <span class = "grossValue"></span>
             </div>
-            <div class="netOutputContainer">
+            <div class = "netOutputContainer">
                 <p>Net value : </p>
-                <span class="netValue"></span>
+                <span class = "netValue"></span>
+            </div>
+        </div>
+        <div class = "companySpendingsTable">
+            <div class = "headingContainer">
+                <h2 class = "tableHeading">Company Spendings List</h2>
+                <button class = "openWindowButton">Add</button>
+            </div>
+            <table class = "itemTable">
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Net price</th>
+                    <th>Gross price</th>
+                </tr>
+                <div class = "placeForNewItems">
+
+                </div>
+            </table>
+            <div class = "addWindow">
+                <div class = "addWindowContent">
+                    <p class = "addWindowHead">Adding New Item</p>
+                    <input type = "text" placeholder = "Name of product">
+                    <input type = "text" placeholder = "Category">
+                    <input type = "number" placeholder="Net price">
+                    <input type = "number" placeholder = "Gross price">
+                    <div class="addWindowButtons">
+                        <button class = "confirmButton">Add</button>
+                        <button class = "exitButton">Exit</button>
+                    </div>
+                </div>
             </div>
         </div>
         <footer>
             <span>Author: Piotr Kowalski,</span>
-            <span>Email Address: <a href="mailto:piotrkowalski056@gmail.com" class="emailAdress">piotrkowalski056@gmail.com</a></span>
+            <span>Email Address: <a href = "mailto:piotrkowalski056@gmail.com" class = "emailAdress">piotrkowalski056@gmail.com</a></span>
         </footer>
 
-        <script src="calculator.js"></script>
+        <script src = "calculator.js"></script>
     </body>
 </html>

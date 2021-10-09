@@ -2,6 +2,8 @@
 const calculateButton = document.querySelector(".calculateButton");
 const resetButton = document.querySelector(".resetButton");
 const taxValue = 0.23;
+const openWindowToAddItem = document.querySelector(".openWindowButton");
+const closeWindowToAddItem = document.querySelector(".exitButton");
 
 //--------------------Functions to calculations features--------------------
 const calculateValue = (writtenValue, choosedRadioButton) => {
@@ -34,6 +36,14 @@ const displayResult = (resultValue, writtenValue, choosedRadioButton) => {
     document.querySelector(".netValue").innerHTML = "";
     document.querySelector("#writtenValue").value = "";
  }
+//--------------------Function to open and close window to adding items to list-------------
+const openWindow = () => {
+    document.querySelector(".addWindow").style.display = "flex";
+}
+
+const closeWindow = () => {
+    document.querySelector(".addWindow").style.display = "none";
+}
 //--------------------Events from event listeners--------------------
 const calculateEvent = () => {
 let writtenValue = Number(document.querySelector("#writtenValue").value);
@@ -46,6 +56,15 @@ const resetEvent = () => {
     reset();
 }
 
+const openWindowEvent = () => {
+    openWindow();
+}
+
+const closeWindowEvent = () => {
+    closeWindow();
+}
 //--------------------Event listeners--------------------
 calculateButton.addEventListener('click', calculateEvent);
 resetButton.addEventListener('click', resetEvent);
+openWindowToAddItem.addEventListener('click', openWindowEvent);
+closeWindowToAddItem.addEventListener('click', closeWindowEvent);
