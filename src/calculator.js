@@ -4,7 +4,7 @@ const resetButton = document.querySelector(".resetButton");
 const taxValue = 0.23;
 const openWindowToAddItem = document.querySelector(".openWindowButton");
 const closeWindowToAddItem = document.querySelector(".exitButton");
-const addElementToList = document.querySelector(".confirmButton");
+const addElement = document.querySelector(".confirmButton");
 
 //--------------------Functions to calculations features--------------------
 const calculateValue = (writtenValue, choosedRadioButton) => {
@@ -73,9 +73,12 @@ const writeElementToTable = (obj) => {
     let deleteButton = document.createElement("button");
     deleteButton.className = "deleteRowButton";
     deleteButton.innerHTML = "\u00D7";
+
+    deleteButton.onclick = deleteElement = () => {
+       newRow.remove();
+    }
     containerForButton.appendChild(deleteButton);
     newRow.appendChild(containerForButton);
-
     document.querySelector(".itemTable").appendChild(newRow);
 }
 //--------------------Events from event listeners--------------------
@@ -102,10 +105,9 @@ const addNewItemEvent = () => {
     writeElementToTable(getNewItemValues());
 
 }
-
 //--------------------Event listeners--------------------
 calculateButton.addEventListener('click', calculateEvent);
 resetButton.addEventListener('click', resetEvent);
 openWindowToAddItem.addEventListener('click', openWindowEvent);
 closeWindowToAddItem.addEventListener('click', closeWindowEvent);
-addElementToList.addEventListener('click', addNewItemEvent);
+addElement.addEventListener('click', addNewItemEvent);
