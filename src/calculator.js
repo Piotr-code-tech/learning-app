@@ -39,11 +39,11 @@ const displayResult = (resultValue, writtenValue, choosedRadioButton) => {
  }
 //--------------------Function to open and close window to adding items to list-------------
 const openWindow = () => {
-    document.querySelector(".addWindow").style.display = "flex";
+    document.querySelector(".addWindow").classList.add('opened');
 }
 
 const closeWindow = () => {
-    document.querySelector(".addWindow").style.display = "none";
+    document.querySelector(".addWindow").classList.remove('opened');
 }
 //--------------------Function to add new items to list-------------
 const getNewItemValues = () => {
@@ -63,11 +63,12 @@ const getNewItemValues = () => {
 const writeElementToTable = (obj) => {
     let newRow = document.createElement("tr");
     let rowContent = obj;
-    for(const property in rowContent){
-        let newColumn = document.createElement("td");
-        newColumn.innerHTML = rowContent[property];
-        newRow.appendChild(newColumn);
-    }
+
+    Object.values(rowContent).map((value) => {
+            let newColumn = document.createElement("td");
+            newColumn.innerHTML = value;
+            newRow.appendChild(newColumn);
+    });
 
     let containerForButton = document.createElement("td");
     let deleteButton = document.createElement("button");
@@ -81,24 +82,12 @@ const writeElementToTable = (obj) => {
     newRow.appendChild(containerForButton);
     document.querySelector(".itemTable").appendChild(newRow);
 }
-//--------------------Events from event listeners--------------------
+//--------------------Callbacks to Events from event listeners--------------------
 const calculateEvent = () => {
 let writtenValue = Number(document.querySelector("#writtenValue").value);
 let choosedRadioButton = document.querySelector('input[name="radioButton"]:checked').value;
 let resultValue = calculateValue(writtenValue, choosedRadioButton);
 displayResult(resultValue, writtenValue, choosedRadioButton);
-}
-
-const resetEvent = () => {
-    reset();
-}
-
-const openWindowEvent = () => {
-    openWindow();
-}
-
-const closeWindowEvent = () => {
-    closeWindow();
 }
 
 const addNewItemEvent = () => {
@@ -107,7 +96,7 @@ const addNewItemEvent = () => {
 }
 //--------------------Event listeners--------------------
 calculateButton.addEventListener('click', calculateEvent);
-resetButton.addEventListener('click', resetEvent);
-openWindowToAddItem.addEventListener('click', openWindowEvent);
-closeWindowToAddItem.addEventListener('click', closeWindowEvent);
+resetButton.addEventListener('click', reset);
+openWindowToAddItem.addEventListener('click', openWindow);
+closeWindowToAddItem.addEventListener('click', closeWindow);
 addElement.addEventListener('click', addNewItemEvent);

@@ -162,6 +162,9 @@ cursor: pointer;
     box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
     transition: all 0.3s;
 }
+.deleteRowButton:hover {
+     background: #921111;
+}
 /*--------------- Window to add new element to the list ------------ */
 .addWindow{
     color: black;
@@ -174,6 +177,9 @@ cursor: pointer;
     display: none;
     justify-content: center;
     align-items: center;
+}
+.opened{
+    display: flex;
 }
 .addWindowContent{
     height: 300px;
