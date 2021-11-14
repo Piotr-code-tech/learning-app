@@ -1,4 +1,4 @@
-@import "reset.css";
+@import "./reset.css";
 
 body {
     font-family: Ubuntu, sans-serif;
@@ -14,15 +14,15 @@ body {
     border-radius : 10px;
 }
 .mainHeadContainer h1 {
-    color: A7ADC6;
+    color: #A7ADC6;
     font-size: 32px;
     font-weight: bold;
-    margin: 8px 0px 0px 0px;
+    margin: 8px 0 0 0;
     text-indent: 32px;
 }
 .mainHeadContainer p {
     font-size: 16px;
-    margin: 8px 0px 8px 0px;
+    margin: 8px 0;
     text-indent: 32px;
 }
 .calculatorContainer{
@@ -32,7 +32,7 @@ body {
     justify-content: space-between;
 }
 .calculatorContainer div {
-    margin: 8px 0px 0px 0px;
+    margin: 8px 0 0 0;
 }
 .valueInputHead {
     font-size: 24px;
@@ -203,7 +203,7 @@ cursor: pointer;
 }
 .addWindowButtons{
     display: flex;
-    display-direction: row
+    display-direction: row;
     align-items: center;
     justify-content: center;
 }

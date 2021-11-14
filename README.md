@@ -1,5 +1,13 @@
 # learning-app
-App for learning purposes - readme to be added later
+App for learning purposes
+
+#Running App:
+
+run following scripts in the console
+- npm install
+- npm run build
+- npm run start
+- go to localhost:8088
 
 
 ### App description
