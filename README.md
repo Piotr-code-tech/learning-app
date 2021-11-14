@@ -48,10 +48,24 @@ It will be a gross/net values calculator with additional VAT taxes. App also sup
       2. Value net (if passed, calc automatically gross)
       3. Value gross (if passed, calc automatically net)
    
-6. Connect table with calculator (definition to be added)
+6. Summary:
+   1. Income
+   2. spendings (gross/net)
+   3. amount of taxes
+
+7. income tax
+   1. form of taxes (linear, progressive)
+   2. calculation
+
+8. ZUS
+   1. type of ZUS (low, regular, preferential)
+   2. calculation
+
+9. Chart
+
+10. Typescript and types
+11. React app with Next.js
+
+
 
 XXXX. Pair programming in most difficult parts to practice communication skills.
-
-        
-
-
