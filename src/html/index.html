@@ -15,7 +15,7 @@
             <div>
                 <p class="valueInputHead">Please enter the value :</p>
             </div>
-            <div>
+            <div class="inputContainer">
                 <input type="number" name="value" id="writtenValue" min="1" placeholder="Value" required>
                 <button class="calculateButton">Calculate</button>
                 <button class="resetButton">Reset</button>
@@ -23,7 +23,7 @@
             <div>
                 <p class="radioInputHead">Which value do you want to calculate :</p>
             </div>
-            <div>
+            <div class="radioContainer">
                 <label>Gross value</label>
                 <input type="radio" id="grossRadioButton" name="radioButton" value="gross">
                 <label>Net value</label>
@@ -39,6 +39,35 @@
             <div class="netOutputContainer">
                 <p>Net value : </p>
                 <span class="netValue"></span>
+            </div>
+        </div>
+        <div class = "companySpendingsTable">
+            <div class = "headingContainer">
+                <h2 class = "tableHeading">Company Spendings List</h2>
+                <button class = "openWindowButton">Add</button>
+            </div>
+            <table class = "itemTable">
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Net price</th>
+                    <th>Gross price</th>
+                    <th>Delete</th>
+                </tr>
+            </table>
+            <!-- ----------------Window to add new element to the list------------ -->
+            <div class = "addWindow">
+                <div class = "addWindowContent">
+                    <p class = "addWindowHead">Adding New Item</p>
+                    <input type = "text" class = "nameListElement" placeholder = "Name of product">
+                    <input type = "text" class = "categoryListElement" placeholder = "Category">
+                    <input type = "number" class = "netPriceListElement" placeholder="Net price">
+                    <input type = "number" class = "grossPriceListElement" placeholder = "Gross price">
+                    <div class="addWindowButtons">
+                        <button class = "confirmButton">Add</button>
+                        <button class = "exitButton">Exit</button>
+                    </div>
+                </div>
             </div>
         </div>
         <footer>
