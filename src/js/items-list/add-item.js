@@ -1,3 +1,42 @@
+import { TableBuilder } from "./Table";
+import { TableRowBuilder } from "./TableRow";
+import { v4 as uuid } from "uuid";
+import { getTable, saveTable } from "./store-table";
+
+export const createTable = () => {
+    const tableFromStorage = getTable();
+    const rows = tableFromStorage?.rows;
+    const table = new TableBuilder();
+
+
+    return table
+        .setRows(rows)
+        .build();
+};
+
+const table = createTable();
+
+// 1. build table on page load
+// 2. add delete item action (by id)
+console.log('created table from storage', table);
+
+export const createRow = ({ id, name, category, price, actions }) => {
+    const tableRow = new TableRowBuilder();
+
+    return tableRow
+        .setId(id)
+        .setName(name)
+        .setCategory(category)
+        .setPrice(price)
+        .setActions(actions)
+        .build();
+}
+
+export const addRow = ({ id, name, category, price, actions }) => {
+    const row = createRow({ id, name, category, price, actions });
+    table.addRow(row);
+}
+
 export const getNewItemValues = () => {
     let nameValue = document.querySelector(".nameListElement").value;
     let categoryValue = document.querySelector(".categoryListElement").value;
@@ -11,26 +50,58 @@ export const getNewItemValues = () => {
         grossPriceValue
     };
 }
-export const writeElementToTable = (obj) => {
-    let newRow = document.createElement("tr");
 
-    Object.values(obj).map((value) => {
-        let newColumn = document.createElement("td");
-        newColumn.innerHTML = value;
-        newRow.appendChild(newColumn);
+export const writeElementToTable = (obj) => {
+    let newHTMLRow = document.createElement("tr");
+    const id = uuid();
+
+    const {
+        nameValue: name,
+        categoryValue: category,
+        netPriceValue: net,
+        grossPriceValue: gross
+    } = obj;
+
+    addRow({
+        id,
+        name,
+        category,
+        price: {
+            net,
+            gross,
+        },
+        actions: {
+            delete: function () {
+                console.log('delete action triggered');
+            }
+        }
+    });
+
+    const createTableColumn = (value) => {
+        let newHTMLTableColumn = document.createElement("td");
+        newHTMLTableColumn.innerHTML = value;
+
+        return newHTMLTableColumn;
+    }
+
+    Object.values(table).forEach((value) => {
+        const { name, category, price, } = value[id];
+
+        const nameColumn = createTableColumn(name);
+        const categoryColumn = createTableColumn(category);
+        const netColumn = createTableColumn(price?.net ?? 0);
+        const grossColumn = createTableColumn(price?.gross ?? 0);
+
+        newHTMLRow.appendChild(nameColumn);
+        newHTMLRow.appendChild(categoryColumn);
+        newHTMLRow.appendChild(netColumn);
+        newHTMLRow.appendChild(grossColumn);
     });
 
     let containerForButton = document.createElement("td");
-    let deleteButton = document.createElement("button");
-    deleteButton.className = "deleteRowButton";
-    deleteButton.innerHTML = "\u00D7";
+    //handle delete action add
+    newHTMLRow.appendChild(containerForButton);
+    document.querySelector(".itemTable").appendChild(newHTMLRow);
 
-    deleteButton.addEventListener('click', () => {
-        newRow.remove();
-    });
-
-    containerForButton.appendChild(deleteButton);
-    newRow.appendChild(containerForButton);
-    document.querySelector(".itemTable").appendChild(newRow);
+    saveTable(table);
 }
-
