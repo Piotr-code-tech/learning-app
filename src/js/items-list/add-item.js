@@ -1,8 +1,8 @@
 export const getNewItemValues = () => {
     let nameValue = document.querySelector(".nameListElement").value;
     let categoryValue = document.querySelector(".categoryListElement").value;
-    let netPriceValue = Number(document.querySelector(".netPriceListElement").value);
-    let grossPriceValue = Number(document.querySelector(".grossPriceListElement").value);
+    let netPriceValue = Number(document.querySelector("#netPriceListElement").value);
+    let grossPriceValue = Number(document.querySelector("#grossPriceListElement").value);
 
     return {
         nameValue,

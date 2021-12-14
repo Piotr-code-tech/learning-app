@@ -61,8 +61,15 @@
                     <p class = "addWindowHead">Adding New Item</p>
                     <input type = "text" class = "nameListElement" placeholder = "Name of product">
                     <input type = "text" class = "categoryListElement" placeholder = "Category">
-                    <input type = "number" class = "netPriceListElement" placeholder="Net price">
-                    <input type = "number" class = "grossPriceListElement" placeholder = "Gross price">
+                    <p class="addWindowSelectHead">Select a value :</p>
+                        <div class="addNetValue">
+                            <input type="radio" id="addNet" name="checkValue" value="net" checked>
+                            <input type = "number" id = "netPriceListElement" class="newNetValue" name="writtenNewValue" placeholder="Net price">
+                        </div>
+                        <div class="addGrossValue">
+                            <input type="radio" id="addGross" name="checkValue" value="gross">
+                            <input type = "number" id = "grossPriceListElement" class="newGrossValue disableValue" name="writtenNewValue" placeholder = "Gross price" disabled>
+                        </div>
                     <div class="addWindowButtons">
                         <button class = "confirmButton">Add</button>
                         <button class = "exitButton">Exit</button>
