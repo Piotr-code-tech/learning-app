@@ -16,8 +16,8 @@ export const createTable = () => {
 
 const table = createTable();
 
-// 1. build table on page load
-// 2. add delete item action (by id)
+// 1. build table on page load.
+// 2. add delete item action (by id).
 console.log('created table from storage', table);
 
 export const createRow = ({ id, name, category, price, actions }) => {
