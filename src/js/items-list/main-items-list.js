@@ -1,9 +1,7 @@
 import { closeWindow, openWindow } from "./open-close-modal";
-import { getNewItemValues, writeElementToTable } from "./add-item";
+import { getNewItemValues, writeElementToTable, displayHTMLTable } from "./add-item";
 import {getValueToCalculate, calculateNewItem, getCheckedInput, displayNewValue, disableElement} from "./calculate-new-item-value";
-
-var spendingListItem = {};
-var spendingItemCounter = 0;
+import {clearAllTable} from "./delete-item";
 
 const openWindowToAddItem = document.querySelector(".openWindowButton");
 const closeWindowToAddItem = document.querySelector(".exitButton");
@@ -12,9 +10,9 @@ const writtenValueToCalculate = document.querySelectorAll('input[name="writtenNe
 const disableInputToWrite = document.querySelectorAll('input[name="checkValue"]');
 
 const addNewItemEvent = () => {
+    clearAllTable();
     writeElementToTable(getNewItemValues());
-    spendingListItem[spendingItemCounter] = getNewItemValues();
-    spendingItemCounter++;
+    displayHTMLTable();
 }
 
 const calculateNewValue = () => {
@@ -37,3 +35,5 @@ writtenValueToCalculate.forEach((input) => {
 disableInputToWrite.forEach((input) => {
 input.addEventListener('input', disablePlaceToWrite);
 });
+
+window.addEventListener('load',displayHTMLTable);

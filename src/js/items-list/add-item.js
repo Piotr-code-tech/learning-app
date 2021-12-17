@@ -52,7 +52,6 @@ export const getNewItemValues = () => {
 }
 
 export const writeElementToTable = (obj) => {
-    let newHTMLRow = document.createElement("tr");
     const id = uuid();
 
     const {
@@ -76,6 +75,10 @@ export const writeElementToTable = (obj) => {
             }
         }
     });
+    saveTable(table);
+}
+
+export const displayHTMLTable = () => {
 
     const createTableColumn = (value) => {
         let newHTMLTableColumn = document.createElement("td");
@@ -84,9 +87,9 @@ export const writeElementToTable = (obj) => {
         return newHTMLTableColumn;
     }
 
-    Object.values(table).forEach((value) => {
-        const { name, category, price, } = value[id];
-
+    Object.values(table.rows).forEach((value) => {
+        const { name, category, price, } = value;
+        let newHTMLRow = document.createElement("tr");
         const nameColumn = createTableColumn(name);
         const categoryColumn = createTableColumn(category);
         const netColumn = createTableColumn(price?.net ?? 0);
@@ -96,12 +99,11 @@ export const writeElementToTable = (obj) => {
         newHTMLRow.appendChild(categoryColumn);
         newHTMLRow.appendChild(netColumn);
         newHTMLRow.appendChild(grossColumn);
+
+        let containerForButton = document.createElement("td");
+        //handle delete action add
+        newHTMLRow.appendChild(containerForButton);
+        document.querySelector(".itemTable").appendChild(newHTMLRow);
     });
-
-    let containerForButton = document.createElement("td");
-    //handle delete action add
-    newHTMLRow.appendChild(containerForButton);
-    document.querySelector(".itemTable").appendChild(newHTMLRow);
-
-    saveTable(table);
 }
+// Create delete function to delete all rows into table
