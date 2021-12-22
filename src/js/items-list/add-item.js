@@ -7,8 +7,6 @@ export const createTable = () => {
     const tableFromStorage = getTable();
     const rows = tableFromStorage?.rows;
     const table = new TableBuilder();
-
-
     return table
         .setRows(rows)
         .build();
@@ -51,6 +49,40 @@ export const getNewItemValues = () => {
     };
 }
 
+export const displayHTMLRow = (obj) => {
+
+    const createTableColumn = (value) => {
+        let newHTMLTableColumn = document.createElement("td");
+        newHTMLTableColumn.innerHTML = value;
+        return newHTMLTableColumn;
+    }
+
+    const {id,name, category, price, actions} = obj;
+    let newHTMLRow = document.createElement("tr");
+    const nameColumn = createTableColumn(name);
+    const categoryColumn = createTableColumn(category);
+    const netColumn = createTableColumn(price.net ?? 0);
+    const grossColumn = createTableColumn(price.gross ?? 0);
+
+    newHTMLRow.appendChild(nameColumn);
+    newHTMLRow.appendChild(categoryColumn);
+    newHTMLRow.appendChild(netColumn);
+    newHTMLRow.appendChild(grossColumn);
+
+    const containerForButton = document.createElement("td");
+    //handle delete action add
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "deleteRowButton";
+    deleteButton.innerHTML = "\u00D7";
+    deleteButton.onclick = () => {
+       table.rows[id].actions.delete();
+       newHTMLRow.remove();
+    }
+    containerForButton.appendChild(deleteButton);
+    newHTMLRow.appendChild(containerForButton);
+    document.querySelector(".itemTable").appendChild(newHTMLRow);
+}
+
 export const writeElementToTable = (obj) => {
     const id = uuid();
 
@@ -61,7 +93,7 @@ export const writeElementToTable = (obj) => {
         grossPriceValue: gross
     } = obj;
 
-    addRow({
+    const newRow = {
         id,
         name,
         category,
@@ -70,40 +102,21 @@ export const writeElementToTable = (obj) => {
             gross,
         },
         actions: {
-            delete: function () {
-                console.log('delete action triggered');
+            delete : function () {
+                delete table.rows[id];
+                saveTable(table);
             }
         }
-    });
+    }
+
+    addRow(newRow);
+    console.log("Table is : ",table);
+    displayHTMLRow(newRow);
     saveTable(table);
 }
 
-export const displayHTMLTable = () => {
-
-    const createTableColumn = (value) => {
-        let newHTMLTableColumn = document.createElement("td");
-        newHTMLTableColumn.innerHTML = value;
-
-        return newHTMLTableColumn;
-    }
-
+export const uploadTable = () => {
     Object.values(table.rows).forEach((value) => {
-        const { name, category, price, } = value;
-        let newHTMLRow = document.createElement("tr");
-        const nameColumn = createTableColumn(name);
-        const categoryColumn = createTableColumn(category);
-        const netColumn = createTableColumn(price?.net ?? 0);
-        const grossColumn = createTableColumn(price?.gross ?? 0);
-
-        newHTMLRow.appendChild(nameColumn);
-        newHTMLRow.appendChild(categoryColumn);
-        newHTMLRow.appendChild(netColumn);
-        newHTMLRow.appendChild(grossColumn);
-
-        let containerForButton = document.createElement("td");
-        //handle delete action add
-        newHTMLRow.appendChild(containerForButton);
-        document.querySelector(".itemTable").appendChild(newHTMLRow);
+        displayHTMLRow(value);
     });
 }
-// Create delete function to delete all rows into table

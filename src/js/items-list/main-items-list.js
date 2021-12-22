@@ -1,5 +1,5 @@
 import { closeWindow, openWindow } from "./open-close-modal";
-import { getNewItemValues, writeElementToTable, displayHTMLTable } from "./add-item";
+import { getNewItemValues, writeElementToTable, uploadTable } from "./add-item";
 import {getValueToCalculate, calculateNewItem, getCheckedInput, displayNewValue, disableElement} from "./calculate-new-item-value";
 import {clearAllTable} from "./delete-item";
 
@@ -10,9 +10,7 @@ const writtenValueToCalculate = document.querySelectorAll('input[name="writtenNe
 const disableInputToWrite = document.querySelectorAll('input[name="checkValue"]');
 
 const addNewItemEvent = () => {
-    clearAllTable();
     writeElementToTable(getNewItemValues());
-    displayHTMLTable();
 }
 
 const calculateNewValue = () => {
@@ -36,4 +34,6 @@ disableInputToWrite.forEach((input) => {
 input.addEventListener('input', disablePlaceToWrite);
 });
 
-window.addEventListener('load',displayHTMLTable);
+window.addEventListener('load', () => {
+    uploadTable();
+});

@@ -15,11 +15,15 @@ class TableRow {
         gross: 0,
     };
     actions = {
-        delete: () => undefined,
-    }
+        //delete: () => undefined,
+    };
 
     setPrice(price) {
         this.price = price;
+    }
+
+    setActions(actions) {
+        this.actions = actions;
     }
 }
 
@@ -32,8 +36,8 @@ export class TableRowBuilder {
         gross: 0,
     };
     #actions = {
-        delete: () => undefined,
-    }
+        //delete: () => undefined,
+    };
 
     setId(id) {
         this.#id = id ?? this.#id;
