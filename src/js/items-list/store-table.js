@@ -1,4 +1,4 @@
-const TABLE_KEY = 'key_';
+const TABLE_KEY = 'app_table_data';
 
 export const saveTable = (table) => {
     const stringifyTable = JSON.stringify(table);

@@ -14,9 +14,7 @@ class TableRow {
         net: 0,
         gross: 0,
     };
-    actions = {
-        //delete: () => undefined,
-    };
+    actions = [];
 
     setPrice(price) {
         this.price = price;

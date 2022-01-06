@@ -2,6 +2,7 @@ import { TableBuilder } from "./Table";
 import { TableRowBuilder } from "./TableRow";
 import { v4 as uuid } from "uuid";
 import { getTable, saveTable } from "./store-table";
+import { CommonRowActions, rowActions } from "./common-row-actions";
 
 export const createTable = () => {
     const tableFromStorage = getTable();
@@ -13,10 +14,6 @@ export const createTable = () => {
 };
 
 const table = createTable();
-
-// 1. build table on page load.
-// 2. add delete item action (by id).
-console.log('created table from storage', table);
 
 export const createRow = ({ id, name, category, price, actions }) => {
     const tableRow = new TableRowBuilder();
@@ -49,7 +46,7 @@ export const getNewItemValues = () => {
     };
 }
 
-export const displayHTMLRow = (obj) => {
+export const displayHTMLRow = (row, table) => {
 
     const createTableColumn = (value) => {
         let newHTMLTableColumn = document.createElement("td");
@@ -57,7 +54,7 @@ export const displayHTMLRow = (obj) => {
         return newHTMLTableColumn;
     }
 
-    const {id,name, category, price, actions} = obj;
+    const { id, name, category, price, actions } = row;
     let newHTMLRow = document.createElement("tr");
     const nameColumn = createTableColumn(name);
     const categoryColumn = createTableColumn(category);
@@ -69,18 +66,32 @@ export const displayHTMLRow = (obj) => {
     newHTMLRow.appendChild(netColumn);
     newHTMLRow.appendChild(grossColumn);
 
+    const rowActions = getRowActions({actions, id, table});
+
+    newHTMLRow.appendChild(rowActions);
+    document.querySelector(".itemTableRows").appendChild(newHTMLRow);
+}
+
+const getRowActions = ({actions, id, table}) => {
     const containerForButton = document.createElement("td");
-    //handle delete action add
-    const deleteButton = document.createElement("button");
-    deleteButton.className = "deleteRowButton";
-    deleteButton.innerHTML = "\u00D7";
-    deleteButton.onclick = () => {
-       table.rows[id].actions.delete();
-       newHTMLRow.remove();
-    }
-    containerForButton.appendChild(deleteButton);
-    newHTMLRow.appendChild(containerForButton);
-    document.querySelector(".itemTable").appendChild(newHTMLRow);
+
+    actions.forEach((action) => {
+        const currentAction = rowActions[action];
+
+        if (currentAction) {
+            const actionButton = document.createElement('button');
+            actionButton.className = currentAction.className;
+            actionButton.innerHTML = currentAction.innerText;
+
+            actionButton.addEventListener('click', () => {
+                currentAction.action({id, table});
+            });
+
+            containerForButton.appendChild(actionButton);
+        }
+    });
+
+    return containerForButton;
 }
 
 export const writeElementToTable = (obj) => {
@@ -101,22 +112,18 @@ export const writeElementToTable = (obj) => {
             net,
             gross,
         },
-        actions: {
-            delete : function () {
-                delete table.rows[id];
-                saveTable(table);
-            }
-        }
+        actions: [CommonRowActions.DELETE],
     }
 
     addRow(newRow);
-    console.log("Table is : ",table);
-    displayHTMLRow(newRow);
+    displayHTMLRow(newRow, table);
     saveTable(table);
 }
 
-export const uploadTable = () => {
-    Object.values(table.rows).forEach((value) => {
-        displayHTMLRow(value);
+export const loadTable = () => {
+    const freshTableData = getTable();
+
+    Object.values(freshTableData.rows).forEach((row) => {
+        displayHTMLRow(row, table);
     });
 }

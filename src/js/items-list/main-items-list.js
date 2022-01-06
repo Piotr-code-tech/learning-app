@@ -1,7 +1,6 @@
 import { closeWindow, openWindow } from "./open-close-modal";
-import { getNewItemValues, writeElementToTable, uploadTable } from "./add-item";
+import { getNewItemValues, writeElementToTable, loadTable } from "./add-item";
 import {getValueToCalculate, calculateNewItem, getCheckedInput, displayNewValue, disableElement} from "./calculate-new-item-value";
-import {clearAllTable} from "./delete-item";
 
 const openWindowToAddItem = document.querySelector(".openWindowButton");
 const closeWindowToAddItem = document.querySelector(".exitButton");
@@ -35,5 +34,5 @@ input.addEventListener('input', disablePlaceToWrite);
 });
 
 window.addEventListener('load', () => {
-    uploadTable();
+    loadTable();
 });
