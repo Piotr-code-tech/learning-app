@@ -3,6 +3,8 @@ import { TableRowBuilder } from "./TableRow";
 import { v4 as uuid } from "uuid";
 import { getTable, saveTable } from "./store-table";
 import { CommonRowActions, rowActions } from "./common-row-actions";
+import { clearHtmlTable } from "./delete-item";
+import { sumNetGrossValue, displayHTMLSummary } from "./summary-row";
 
 export const createTable = () => {
     const tableFromStorage = getTable();
@@ -33,16 +35,16 @@ export const addRow = ({ id, name, category, price, actions }) => {
 }
 
 export const getNewItemValues = () => {
-    let nameValue = document.querySelector(".nameListElement").value;
-    let categoryValue = document.querySelector(".categoryListElement").value;
-    let netPriceValue = Number(document.querySelector("#netPriceListElement").value);
-    let grossPriceValue = Number(document.querySelector("#grossPriceListElement").value);
+    let nameColumnValue = document.querySelector(".nameListElement").value;
+    let categoryColumnValue = document.querySelector(".categoryListElement").value;
+    let netPriceColumnValue = Number(document.querySelector("#netPriceListElement").value);
+    let grossPriceColumnValue = Number(document.querySelector("#grossPriceListElement").value);
 
     return {
-        nameValue,
-        categoryValue,
-        netPriceValue,
-        grossPriceValue
+        nameColumnValue,
+        categoryColumnValue,
+        netPriceColumnValue,
+        grossPriceColumnValue
     };
 }
 
@@ -94,14 +96,23 @@ const getRowActions = ({actions, id, table}) => {
     return containerForButton;
 }
 
+export const loadTable = () => {
+    clearHtmlTable();
+    const freshTableData = getTable();
+    Object.values(freshTableData.rows).forEach((row) => {
+        displayHTMLRow(row, table);
+    });
+    displayHTMLSummary(sumNetGrossValue());
+}
+
 export const writeElementToTable = (obj) => {
     const id = uuid();
 
     const {
-        nameValue: name,
-        categoryValue: category,
-        netPriceValue: net,
-        grossPriceValue: gross
+        nameColumnValue: name,
+        categoryColumnValue: category,
+        netPriceColumnValue: net,
+        grossPriceColumnValue: gross
     } = obj;
 
     const newRow = {
@@ -116,14 +127,6 @@ export const writeElementToTable = (obj) => {
     }
 
     addRow(newRow);
-    displayHTMLRow(newRow, table);
     saveTable(table);
-}
-
-export const loadTable = () => {
-    const freshTableData = getTable();
-
-    Object.values(freshTableData.rows).forEach((row) => {
-        displayHTMLRow(row, table);
-    });
+    loadTable();
 }

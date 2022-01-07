@@ -2,7 +2,6 @@ const TABLE_KEY = 'app_table_data';
 
 export const saveTable = (table) => {
     const stringifyTable = JSON.stringify(table);
-
     localStorage.setItem(TABLE_KEY, stringifyTable);
 };
 
