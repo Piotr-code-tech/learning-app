@@ -1,12 +1,37 @@
+import { saveValue } from "./store-value";
+
 const taxValue = 0.23;
 
-export const calculateValue = (writtenValue, choseRadioButton) => {
+export const calculateNetValue = (value,tax) => {
     let calculatedValue = 0;
+    calculatedValue = value * (1 + tax);
+    return calculatedValue;
+}
+
+export const calculateGrossValue = (value,tax) => {
+    let calculatedValue = 0;
+    calculatedValue = value * (1 - tax);
+    return calculatedValue;
+}
+
+export const calculateValue = (writtenValue, choseRadioButton) => {
+    let returnValue = 0;
     if (choseRadioButton === document.querySelector('input[id="grossRadioButton"]').value) {
-        calculatedValue = writtenValue * (1 + taxValue);
+        returnValue = calculateNetValue(writtenValue, taxValue);
+        const valuesToSave = {
+            writtenIntoPlace: writtenValue,
+            net: writtenValue,
+            gross: returnValue,
+        }
+        saveValue(valuesToSave);
     }
     else if (choseRadioButton === document.querySelector('input[id="netRadioButton"]').value) {
-        calculatedValue = writtenValue * (1 - taxValue);
+        returnValue = calculateGrossValue(writtenValue, taxValue);
+        const valuesToSave = {
+            writtenIntoPlace: writtenValue,
+            net: returnValue,
+            gross: writtenValue,
+        }
+        saveValue(valuesToSave);
     }
-    return calculatedValue;
 }

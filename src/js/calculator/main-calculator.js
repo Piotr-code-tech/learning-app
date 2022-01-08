@@ -1,17 +1,23 @@
 import { calculateValue } from "./calculate-value";
 import { displayResult } from "./display-result";
 import { reset } from "./reset-values";
+import { getValue } from "./store-value";
 
 const calculateButton = document.querySelector(".calculateButton");
 const resetButton = document.querySelector(".resetButton");
 
 const calculate = () => {
-    let writtenValue = Number(document.querySelector("#writtenValue").value);
-    let chosenRadioButton = document.querySelector('input[name="radioButton"]:checked').value;
-    let resultValue = calculateValue(writtenValue, chosenRadioButton);
-    displayResult(resultValue, writtenValue, chosenRadioButton);
+    let writtenValue = document.querySelector("#writtenValue").value;
+    let choosedRadioButton = document.querySelector('input[name="radioButton"]:checked').value;
+    let resultValue = calculateValue(writtenValue, choosedRadioButton);
+    displayResult();
+
 }
 
 calculateButton.addEventListener('click', calculate);
 resetButton.addEventListener('click', reset);
+window.addEventListener('load', () => {
+    const earnedValues = getValue();
+    displayResult(earnedValues);
+});
 

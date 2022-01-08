@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid";
 import { getTable, saveTable } from "./store-table";
 import { CommonRowActions, rowActions } from "./common-row-actions";
 import { clearHtmlTable } from "./delete-item";
-import { sumNetGrossValue, displayHTMLSummary } from "./summary-row";
+import {displayHTMLSummary } from "../summary-window/displayHTML-summary";
 
 export const createTable = () => {
     const tableFromStorage = getTable();
@@ -102,7 +102,7 @@ export const loadTable = () => {
     Object.values(freshTableData.rows).forEach((row) => {
         displayHTMLRow(row, table);
     });
-    displayHTMLSummary(sumNetGrossValue());
+    displayHTMLSummary();
 }
 
 export const writeElementToTable = (obj) => {

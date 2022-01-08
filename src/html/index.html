@@ -13,7 +13,7 @@
 
         <div class="calculatorContainer">
             <div>
-                <p class="valueInputHead">Please enter the value :</p>
+                <p class="valueInputHead">Enter your earnings:</p>
             </div>
             <div class="inputContainer">
                 <input type="number" name="value" id="writtenValue" min="1" placeholder="Value" required>
@@ -41,40 +41,60 @@
                 <span class="netValue"></span>
             </div>
         </div>
-        <div class = "companySpendingsTable">
-            <div class = "headingContainer">
-                <h2 class = "tableHeading">Company Spendings List</h2>
-                <button class = "openWindowButton">Add</button>
-            </div>
-            <table class = "itemTable">
-                <thead>
+        <div class="summarySpendingsContainer">
+            <div class = "companySpendingsTable">
+                <div class = "headingContainer">
+                    <h2 class = "tableHeading">Company Spendings List</h2>
+                    <button class = "openWindowButton">Add</button>
+                </div>
+                <table class = "itemTable">
+                    <thead>
                     <th>Name</th>
                     <th>Category</th>
                     <th>Net price</th>
                     <th>Gross price</th>
                     <th>Delete</th>
-                </thead>
-                <tbody class="itemTableRows"></tbody>
-            </table>
-            <!-- ----------------Window to add new element to the list------------ -->
-            <div class = "addWindow">
-                <div class = "addWindowContent">
-                    <p class = "addWindowHead">Adding New Item</p>
-                    <input type = "text" class = "nameListElement" placeholder = "Name of product">
-                    <input type = "text" class = "categoryListElement" placeholder = "Category">
-                    <p class="addWindowSelectHead">Select a value :</p>
-                        <div class="addNetValue">
-                            <input type="radio" id="addNet" name="checkValue" value="net" checked>
-                            <input type = "number" id = "netPriceListElement" class="newNetValue" name="writtenNewValue" placeholder="Net price">
-                        </div>
-                        <div class="addGrossValue">
-                            <input type="radio" id="addGross" name="checkValue" value="gross">
-                            <input type = "number" id = "grossPriceListElement" class="newGrossValue disableValue" name="writtenNewValue" placeholder = "Gross price" disabled>
-                        </div>
-                    <div class="addWindowButtons">
-                        <button class = "confirmButton">Add</button>
-                        <button class = "exitButton">Exit</button>
-                    </div>
+                    </thead>
+                    <tbody class="itemTableRows"></tbody>
+                </table>
+            </div>
+            <div class="summaryWindow">
+                <h2>Summary</h2>
+                <div>
+                    <p> Net income :</p>
+                    <span class="incomeValue"></span>
+                </div>
+                <div>
+                    <p>Sum of gross spendings :</p>
+                    <span class="grossSumValue"></span>
+                </div>
+                <div>
+                    <p>Sum of net spendings :</p>
+                    <span class="netSumValue"></span>
+                </div>
+                <div>
+                    <p>Amount od taxes :</p>
+                    <span class="taxSumValue"></span>
+                </div>
+            </div>
+        </div>
+        <div class = "addWindow">
+            <div class = "addWindowContent">
+                <p class = "addWindowHead">Adding New Item</p>
+                <input type = "text" class = "nameListElement" placeholder = "Name of product">
+                <input type = "text" class = "categoryListElement" placeholder = "Category">
+                <p class="addWindowSelectHead">Select a value :</p>
+                <div class="addNetValue">
+                    <input type="radio" id="addNet" name="checkValue" value="net" checked>
+                    <input type = "number" id = "netPriceListElement" class="newNetValue" name="writtenNewValue" placeholder="Net price">
+                </div>
+                <div class="addGrossValue">
+                    <input type="radio" id="addGross" name="checkValue" value="gross">
+                    <input type = "number" id = "grossPriceListElement" class="newGrossValue disableValue" name="writtenNewValue" placeholder = "Gross price" disabled>
+                </div>
+                <div class="addWindowButtons">
+                    <button class = "confirmButton">Add</button>
+                    <button class = "exitButton">Exit</button>
                 </div>
             </div>
         </div>

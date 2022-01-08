@@ -1,10 +1,14 @@
-export const displayResult = (resultValue, writtenValue, choosedRadioButton) => {
-    if (choosedRadioButton === document.querySelector('input[id="grossRadioButton"]').value) {
-        document.querySelector(".grossValue").innerHTML = resultValue;
-        document.querySelector(".netValue").innerHTML = writtenValue;
-    }
-    else if (choosedRadioButton === document.querySelector('input[id="netRadioButton"]').value) {
-        document.querySelector(".netValue").innerHTML = resultValue;
-        document.querySelector(".grossValue").innerHTML = writtenValue;
-    }
+import { getValue } from "./store-value";
+export const displayResult = () => {
+    const {
+        writtenIntoPlace,
+        net,
+        gross,
+    } = getValue();
+    let netHTML = document.querySelector(".netValue");
+    let grossHTML = document.querySelector(".grossValue");
+    let placeToWrite = document.querySelector("#writtenValue");
+    netHTML.innerHTML = net;
+    grossHTML.innerHTML = gross;
+    placeToWrite.value = writtenIntoPlace;
 }
