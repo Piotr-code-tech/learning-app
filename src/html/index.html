@@ -83,6 +83,13 @@
                 <p class = "addWindowHead">Adding New Item</p>
                 <input type = "text" class = "nameListElement" placeholder = "Name of product">
                 <input type = "text" class = "categoryListElement" placeholder = "Category">
+                <select required class="vatRate">
+                    <option value="" disabled selected hidden>Select VAT</option>
+                    <option value="0.23">23%</option>
+                    <option value="0.08">8%</option>
+                    <option value="0.05">5%</option>
+                    <option value="0">0%</option>
+                </select>
                 <p class="addWindowSelectHead">Select a value :</p>
                 <div class="addNetValue">
                     <input type="radio" id="addNet" name="checkValue" value="net" checked>

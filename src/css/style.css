@@ -202,7 +202,7 @@ footer {
     padding: 8px 0px 8px 0px;
     text-align: center;
     width:100%;
-    position: absolute;
+    position: fixed;
     bottom: 0;
 }
 .emailAdress {
@@ -225,7 +225,7 @@ footer {
     display: flex;
 }
 .addWindowContent{
-    height: 350px;
+    height: 400px;
     width: 500px;
     background-color: #fff;
     border-radius: 20px;
@@ -249,6 +249,11 @@ footer {
 .addWindowContent input {
     margin: 20px 0px 0px 0px;
     font-size: 20px;
+}
+.vatRate {
+    margin: 20px 0px 0px 0px;
+    font-size: 20px;
+    width: 52%;
 }
 .addWindowButtons{
     display: flex;
