@@ -13,4 +13,4 @@ export const getTable = () => {
     } catch (e) {
         return null;
     }
-}
+};

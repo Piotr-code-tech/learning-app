@@ -1,14 +1,21 @@
-import { getValue } from "./store-value";
+import { getIncome } from "./store-income";
+
 export const displayResult = () => {
-    const {
-        writtenIntoPlace,
-        net,
-        gross,
-    } = getValue();
-    let netHTML = document.querySelector(".netValue");
-    let grossHTML = document.querySelector(".grossValue");
-    let placeToWrite = document.querySelector("#writtenValue");
-    netHTML.innerHTML = net;
-    grossHTML.innerHTML = gross;
-    placeToWrite.value = writtenIntoPlace;
+    const incomeValues = getIncome();
+
+    if(incomeValues){
+        const {
+            writtenIntoPlace,
+            net,
+            gross,
+            } = incomeValues;
+
+        let netHTML = document.querySelector(".netValue");
+        let grossHTML = document.querySelector(".grossValue");
+        let placeToWrite = document.querySelector("#writtenValue");
+        netHTML.innerHTML = net;
+        grossHTML.innerHTML = gross;
+        placeToWrite.value = writtenIntoPlace;
+    }
+
 }

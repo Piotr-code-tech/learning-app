@@ -1,19 +1,35 @@
 import { sumNetGrossValue } from "./calculate-netGross-sum";
-import { getValue } from "../calculator/store-value";
+import { getIncome } from "../calculator/store-income";
 
 export const calculateIncome = () => {
+    let incomeNetValue = 0;
+    let netIncome = 0;
+    let netSpendings = 0;
 
-    const {
-        summaryNetValue,
-        summaryGrossValue,
-    } = sumNetGrossValue();
+    const netGrossValues = sumNetGrossValue();
 
-    const {
-        writtenIntoPlace,
-        net,
-        gross,
-    } = getValue();
+    if(netGrossValues) {
+        const {
+            summaryNetValue,
+            summaryGrossValue,
+        } = netGrossValues;
 
-    const incomeNetValue = net - summaryNetValue;
+        netSpendings = summaryNetValue;
+    }
+
+    const incomeValues = getIncome();
+
+    if(incomeValues) {
+        const {
+            writtenIntoPlace,
+            net,
+            gross,
+        } = incomeValues;
+
+        netIncome = net;
+    }
+
+    incomeNetValue = netIncome - netSpendings;
+
     return incomeNetValue;
 }

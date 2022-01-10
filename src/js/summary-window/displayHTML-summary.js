@@ -14,7 +14,7 @@ export const displayHTMLSummary = () => {
     let netSumHTML = document.querySelector(".netSumValue");
     let grossSumHTML = document.querySelector(".grossSumValue");
     let incomeHTML = document.querySelector(".incomeValue");
-    if(summaryGrossValue != 0) {
+    if(summaryGrossValue) {
         netSumHTML.innerHTML = summaryNetValue;
         grossSumHTML.innerHTML = summaryGrossValue;
         incomeHTML.innerHTML = incomeValue;

@@ -1,4 +1,4 @@
-import { saveValue } from "./store-value";
+import { saveIncome } from "./store-income";
 
 export const reset = () => {
     document.querySelector("#grossRadioButton").checked = false;
@@ -7,5 +7,5 @@ export const reset = () => {
     document.querySelector(".netValue").innerHTML = "";
     document.querySelector("#writtenValue").value = "";
 
-    saveValue(null);
+    saveIncome(null);
 }
