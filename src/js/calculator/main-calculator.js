@@ -22,5 +22,6 @@ resetButton.addEventListener('click', () => {
 
 window.addEventListener('load', () => {
     displayResult();
+    displayHTMLSummary();
 });
 

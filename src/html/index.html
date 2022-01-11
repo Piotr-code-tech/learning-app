@@ -21,6 +21,24 @@
                 <button class="resetButton">Reset</button>
             </div>
             <div>
+                <select required class="vatTax" required>
+                    <option value="" disabled selected hidden>Select VAT</option>
+                    <option value="0.23">23%</option>
+                    <option value="0.08">8%</option>
+                    <option value="0.05">5%</option>
+                    <option value="0">0%</option>
+                </select>
+            </div>
+            <div>
+                <select required class="formOfTaxation">
+                    <option value="" disabled selected hidden>Form of taxation</option>
+                    <option value="0.15">Lump sum 15%</option>
+                    <option value="0.17">Tax scale 17%/32%</option>
+                    <option value="0.19">Flat rate tax 19%</option>
+                    <option value="0.32">Second tax threshold 32%</option>
+                </select>
+            </div>
+            <div>
                 <p class="radioInputHead">Which value do you want to calculate :</p>
             </div>
             <div class="radioContainer">
@@ -63,6 +81,14 @@
                 <div>
                     <p> Net income :</p>
                     <span class="incomeValue"></span>
+                </div>
+                <div>
+                    <p> Costs :</p>
+                    <span class="costsValue"></span>
+                </div>
+                <div>
+                    <p> Vat tax on income :</p>
+                    <span class="vatValue"></span>
                 </div>
                 <div>
                     <p>Sum of gross spendings :</p>
