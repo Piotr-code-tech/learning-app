@@ -1,13 +1,13 @@
 import { TableBuilder } from "./Table";
 import { TableRowBuilder } from "./TableRow";
 import { v4 as uuid } from "uuid";
-import { getTable, saveTable } from "./store-table";
+import { saveData, getData } from '../localStorage-operations/storeData';
 import { CommonRowActions, rowActions } from "./common-row-actions";
 import { clearHtmlTable } from "./delete-item";
 import {displayHTMLSummary } from "../summary-window/displayHTML-summary";
 
 export const createTable = () => {
-    const tableFromStorage = getTable();
+    const tableFromStorage = getData('app_table_data');
     const rows = tableFromStorage?.rows;
     const table = new TableBuilder();
     return table
@@ -98,7 +98,7 @@ const getRowActions = ({actions, id, table}) => {
 
 export const loadTable = () => {
     clearHtmlTable();
-    const freshTableData = getTable();
+    const freshTableData = getData('app_table_data');
     Object.values(freshTableData.rows).forEach((row) => {
         displayHTMLRow(row, table);
     });
@@ -127,6 +127,6 @@ export const writeElementToTable = (obj) => {
     }
 
     addRow(newRow);
-    saveTable(table);
+    saveData(table,'app_table_data');
     loadTable();
 }

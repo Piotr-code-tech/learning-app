@@ -1,7 +1,7 @@
 const taxValueOption = document.querySelector(".vatRate");
 
 const getTaxValue = () => {
-    const taxValue = Number(document.querySelector(".vatRate").value);
+    const taxValue = Number(taxValueOption.value);
     return taxValue;
 }
 

@@ -1,14 +1,13 @@
-import { getIncome } from "./store-income";
+import { getData } from '../localStorage-operations/storeData';
 
 export const displayResult = () => {
-    const incomeValues = getIncome();
 
-    if(incomeValues){
+    if(getData("app_earnedValue_data")){
         const {
             writtenIntoPlace,
             net,
             gross,
-            } = incomeValues;
+        } = getData("app_earnedValue_data");
 
         let netHTML = document.querySelector(".netValue");
         let grossHTML = document.querySelector(".grossValue");

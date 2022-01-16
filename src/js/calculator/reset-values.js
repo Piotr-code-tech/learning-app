@@ -1,4 +1,4 @@
-import { saveIncome } from "./store-income";
+import { saveData } from '../localStorage-operations/storeData';
 
 export const reset = () => {
     document.querySelector("#grossRadioButton").checked = false;
@@ -7,5 +7,5 @@ export const reset = () => {
     document.querySelector(".netValue").innerHTML = "";
     document.querySelector("#writtenValue").value = "";
 
-    saveIncome(null);
+    saveData(null,"app_earnedValue_data");
 }

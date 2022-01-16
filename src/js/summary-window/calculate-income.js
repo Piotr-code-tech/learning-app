@@ -1,5 +1,5 @@
 import { sumNetGrossValue } from "./calculate-netGross-sum";
-import { getIncome } from "../calculator/store-income";
+import { getData } from '../localStorage-operations/storeData';
 
 export const calculateIncome = () => {
     let incomeNetValue = 0;
@@ -17,7 +17,7 @@ export const calculateIncome = () => {
         netSpendings = summaryNetValue;
     }
 
-    const incomeValues = getIncome();
+    const incomeValues = getData("app_earnedValue_data");
 
     if(incomeValues) {
         const {

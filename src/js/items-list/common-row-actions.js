@@ -1,6 +1,6 @@
-import { saveTable } from "./store-table";
-import { loadTable } from "./add-item";
+import { saveData } from '../localStorage-operations/storeData';
 import { clearHtmlTable } from "./delete-item";
+import { loadTable } from "./add-item";
 
 export const CommonRowActions = {
     DELETE: 1,
@@ -10,7 +10,7 @@ export const rowActions = {
     [CommonRowActions.DELETE]: {
         action: ({id, table}) => {
             delete table.rows[id];
-            saveTable(table);
+            saveData(table,'app_table_data');
             clearHtmlTable();
             loadTable();
         },

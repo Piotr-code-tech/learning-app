@@ -1,8 +1,8 @@
-import { getTable } from "../items-list/store-table";
+import { getData } from '../localStorage-operations/storeData';
 
 export const sumNetGrossValue = () => {
 
-    const actualTable = getTable();
+    const actualTable = getData('app_table_data');
     let summaryNetValue = 0;
     let summaryGrossValue = 0;
     if(actualTable.rows) {

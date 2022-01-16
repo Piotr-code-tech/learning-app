@@ -1,5 +1,5 @@
 import { sumNetGrossValue } from "./calculate-netGross-sum";
-import { getIncome } from "../calculator/store-income";
+import { getData } from '../localStorage-operations/storeData';
 
 const getTaxIncome = () => {
     const taxPercent = Number(document.querySelector(".vatTax").value);
@@ -23,7 +23,7 @@ export const calculateVatTaxOnIncome = () => {
             netSpendings = summaryNetValue;
         }
 
-        const incomeValues = getIncome();
+        const incomeValues = getData("app_earnedValue_data");
 
         if(incomeValues) {
             const {
