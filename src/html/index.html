@@ -30,12 +30,12 @@
                 </select>
             </div>
             <div>
-                <select class="taxForm" required>
+                <select class="incomeTax" required>
                     <option value="" disabled selected hidden>Form of taxation</option>
-                    <option value="0.15">Lump sum 15%</option>
-                    <option value="0.17">Tax scale 17%/32%</option>
-                    <option value="0.19">Flat rate tax 19%</option>
-                    <option value="0.32">Second tax threshold 32%</option>
+                    <option value="1">Lump sum 15%</option>
+                    <option value="2">Tax scale 17%/32%</option>
+                    <option value="3">Flat rate tax 19%</option>
+                    <option value="4">Second tax threshold 32%</option>
                 </select>
             </div>
             <div>
@@ -83,20 +83,16 @@
                     <span class="incomeValue"></span>
                 </div>
                 <div>
-                    <p> Costs :</p>
-                    <span class="costsValue"></span>
+                    <p> Costs (Net) :</p>
+                    <span class="costsNetValue"></span>
                 </div>
                 <div>
-                    <p> Vat tax on income :</p>
+                    <p> Costs (Gross) :</p>
+                    <span class="costsGrossValue"></span>
+                </div>
+                <div>
+                    <p> Vat tax :</p>
                     <span class="vatValue"></span>
-                </div>
-                <div>
-                    <p>Sum of gross spendings :</p>
-                    <span class="grossSumValue"></span>
-                </div>
-                <div>
-                    <p>Sum of net spendings :</p>
-                    <span class="netSumValue"></span>
                 </div>
                 <div>
                     <p>Amount od taxes :</p>

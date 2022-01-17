@@ -1,5 +1,9 @@
 import { saveData } from '../localStorage-operations/storeData';
-const taxValue = 0.23;
+
+const getTaxValue = () => {
+    const taxValue = Number(document.querySelector(".vatTax").value);
+    return taxValue;
+}
 
 export const calculateNetValue = (value,tax) => {
     let calculatedValue = 0;
@@ -17,7 +21,7 @@ export const calculateValue = (writtenValue, choseRadioButton) => {
     let returnValue = 0;
     if(writtenValue){
         if (choseRadioButton === document.querySelector('input[id="grossRadioButton"]').value) {
-            returnValue = calculateNetValue(writtenValue, taxValue);
+            returnValue = calculateNetValue(writtenValue, getTaxValue());
             const valuesToSave = {
                 writtenIntoPlace: writtenValue ?? 0,
                 net: writtenValue ?? 0,
@@ -26,7 +30,7 @@ export const calculateValue = (writtenValue, choseRadioButton) => {
             saveData(valuesToSave,"app_earnedValue_data");
         }
         else if (choseRadioButton === document.querySelector('input[id="netRadioButton"]').value) {
-            returnValue = calculateGrossValue(writtenValue, taxValue);
+            returnValue = calculateGrossValue(writtenValue, getTaxValue());
             const valuesToSave = {
                 writtenIntoPlace: writtenValue ?? 0,
                 net: returnValue ?? 0,

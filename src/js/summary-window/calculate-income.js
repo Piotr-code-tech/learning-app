@@ -1,20 +1,20 @@
-import { sumNetGrossValue } from "./calculate-netGross-sum";
+import { calculateNetGrossCosts } from "./calculate-netGross-costs";
 import { getData } from '../localStorage-operations/storeData';
 
 export const calculateIncome = () => {
     let incomeNetValue = 0;
-    let netIncome = 0;
-    let netSpendings = 0;
+    let netEarnings = 0;
+    let netCosts = 0;
 
-    const netGrossValues = sumNetGrossValue();
+    const netGrossCosts = calculateNetGrossCosts();
 
-    if(netGrossValues) {
+    if(netGrossCosts) {
         const {
             summaryNetValue,
             summaryGrossValue,
-        } = netGrossValues;
+        } = netGrossCosts;
 
-        netSpendings = summaryNetValue;
+        netCosts = summaryNetValue;
     }
 
     const incomeValues = getData("app_earnedValue_data");
@@ -26,10 +26,10 @@ export const calculateIncome = () => {
             gross,
         } = incomeValues;
 
-        netIncome = net;
+        netEarnings = net;
     }
 
-    incomeNetValue = netIncome - netSpendings;
+    incomeNetValue = netEarnings - netCosts;
 
     return incomeNetValue;
 }

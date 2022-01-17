@@ -1,6 +1,6 @@
 import { getData } from '../localStorage-operations/storeData';
 
-export const sumNetGrossValue = () => {
+export const calculateNetGrossCosts = () => {
 
     const actualTable = getData('app_table_data');
     let summaryNetValue = 0;

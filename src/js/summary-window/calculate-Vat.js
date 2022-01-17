@@ -1,4 +1,4 @@
-import { sumNetGrossValue } from "./calculate-netGross-sum";
+import { calculateNetGrossCosts } from "./calculate-netGross-costs";
 import { getData } from '../localStorage-operations/storeData';
 
 const getTaxIncome = () => {
@@ -6,39 +6,34 @@ const getTaxIncome = () => {
     return taxPercent;
 }
 
-export const calculateVatTaxOnIncome = () => {
-    let vatTax = 0;
-    let incomeNetValue = 0;
-    let netIncome = 0;
-    let netSpendings = 0;
+const calculateVatFromIncome = (tax) => {
+    const {
+        writtenIntoPlace,
+        net,
+        gross,
+    } = getData("app_earnedValue_data");
 
-    const netGrossValues = sumNetGrossValue();
+    const incomeVat = net * tax;
+    return incomeVat;
+}
 
-        if(netGrossValues) {
-            const {
-                summaryNetValue,
-                summaryGrossValue,
-            } = netGrossValues;
+const calculateVatFromCosts = () => {
 
-            netSpendings = summaryNetValue;
-        }
+    let costsVat = 0;
+    const costsTable = getData('app_table_data');
+    Object.values(costsTable.rows).forEach((row) => {
+        const netValue = row.price.net;
+        const grossValue = row.price.gross;
+        const vat = grossValue - netValue;
+        costsVat = costsVat + vat;
+    });
+    return costsVat;
+}
 
-        const incomeValues = getData("app_earnedValue_data");
+export const calculateVat = () => {
+    const vatIncome = calculateVatFromIncome(getTaxIncome());
+    const vatCosts = calculateVatFromCosts();
 
-        if(incomeValues) {
-            const {
-                writtenIntoPlace,
-                net,
-                gross,
-            } = incomeValues;
-
-            netIncome = net;
-        }
-
-        incomeNetValue = netIncome - netSpendings;
-
-        const taxPercent = getTaxIncome();
-
-        const taxValue  = incomeNetValue * taxPercent;
-        return taxValue
+    const vat = vatIncome - vatCosts;
+    return vat;
 }
