@@ -1,0 +1,48 @@
+.zusAndSpendings {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+.zusContainer {
+    margin: 25px 25px 25px 10px;
+    width: 100%;
+    background-color: #1c112d;
+    border-radius: 10px;
+    padding: 10px;
+}
+.zusContainer h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0px 0px 10px 0px;
+    text-align: center;
+    border-bottom: 2px solid #3f4650;
+}
+.zusButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.zusButtonsChecked {
+    color: #afb6c0;
+    background: #009900;
+    box-shadow: none;
+}
+.zusButtons button {
+    font-size: 20px;
+    padding: 7px 7px;
+    margin-left: 10px;
+    margin-right: 20px;
+    position: relative;
+    background: #3f4650;
+    border: none;
+    border-radius: 5px;
+    color: #131313;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    transition: all 0.3s;
+}
+.zusButtons button:hover{
+    color: #afb6c0;
+    background: #009900;
+    box-shadow: none;
+}

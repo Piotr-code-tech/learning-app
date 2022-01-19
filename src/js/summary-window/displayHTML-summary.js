@@ -1,6 +1,7 @@
 import { calculateNetGrossCosts } from "./calculate-netGross-costs";
 import { calculateIncome } from "./calculate-income";
 import { calculateVat } from "./calculate-Vat";
+import { calculateIncomeTax } from "./calculate-incomeTax";
 
 export const getSummaryValues = () => {
     const {
@@ -8,13 +9,13 @@ export const getSummaryValues = () => {
         summaryGrossValue
     } = calculateNetGrossCosts();
 
-    const incomeValue = calculateIncome();
+    //const incomeValue = calculateIncome();
     const vatValue = calculateVat();
 
     return {
         summaryNetValue,
         summaryGrossValue,
-        incomeValue,
+        //incomeValue,
         vatValue,
     };
 }
@@ -23,25 +24,26 @@ export const displayHTMLSummary = () => {
     const {
         summaryNetValue,
         summaryGrossValue,
-        incomeValue,
+        //incomeValue,
         vatValue,
     } = getSummaryValues();
 
     let netCostsHTML = document.querySelector(".costsNetValue");
     let grossCostsHTML = document.querySelector(".costsGrossValue");
-    let incomeHTML = document.querySelector(".incomeValue");
+    //let incomeHTML = document.querySelector(".incomeValue");
     let vatHTML = document.querySelector(".vatValue");
+    //calculateIncomeTax();
 
     if(calculateNetGrossCosts()||calculateIncome()) {
         netCostsHTML.innerHTML = summaryNetValue;
         grossCostsHTML.innerHTML = summaryGrossValue;
-        incomeHTML.innerHTML = incomeValue;
+        //incomeHTML.innerHTML = incomeValue;
         vatHTML.innerHTML = vatValue;
     }
     else{
         netCostsHTML.innerHTML = 0;
         grossCostsHTML.innerHTML = 0;
-        incomeHTML.innerHTML = incomeValue;
+        //incomeHTML.innerHTML = incomeValue;
         vatHTML.innerHTML = 0;
     }
 }
