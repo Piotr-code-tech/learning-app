@@ -1,6 +1,3 @@
-const zusButtons = document.querySelectorAll(".zusType");
-const sicknessButton = document.querySelector(".sickenssState");
-
 const setZusContributions = () => {
     return {
         retirement: 0,
@@ -15,8 +12,11 @@ const setZusContributions = () => {
 const reliefToStart = () => {
     const zusContributions = setZusContributions();
     zusContributions.healthy = 381.81;
-    console.log(zusContributions);
-    console.log("Relief to start");
+    zusContributions.retirement = 0;
+    zusContributions.socialSecurity = 0;
+    zusContributions.workAccident = 0;
+    zusContributions.sickness = 0;
+    return zusContributions;
 }
 
 const reducedZus = () => {
@@ -25,8 +25,8 @@ const reducedZus = () => {
     zusContributions.socialSecurity = 67.20;
     zusContributions.workAccident = 14.03;
     zusContributions.healthy = 381.81;
-    console.log(zusContributions);
-    console.log("Reduced zus");
+    zusContributions.sickness = 20.58;
+    return zusContributions;
 }
 
 const noRelief = () => {
@@ -35,8 +35,16 @@ const noRelief = () => {
     zusContributions.socialSecurity = 252.43;
     zusContributions.workAccident = 52.70;
     zusContributions.healthy = 381.81;
-    console.log(zusContributions);
-    console.log("No relief");
+    zusContributions.sickness = 77.31;
+    return zusContributions;
+}
+
+export const calculateTotalZus = (obj) => {
+    let totalZus = 0;
+    Object.values(obj).forEach((value) => {
+        totalZus += value;
+    });
+    return totalZus;
 }
 
 const zusType = new Map([
@@ -45,49 +53,10 @@ const zusType = new Map([
     [3,noRelief]
 ]);
 
-const returnButtonValue = (button) => {
-    console.log(button.value);
+export const returnButtonValue = (button) => {
     return Number(button.value);
 }
-const calculateZUS = (key) => {
-    const calculate = zusType.get(key);
-    calculate();
+export const calculateZUS = (key) => {
+    let calculate = zusType.get(key);
+    return calculate();
 }
-
-var active = false;
-
-const toggle = (button) => {
-    if(!active) {
-    button.
-    active = !active;
-    }
-    else{
-
-    }
-}
-
-zusButtons.forEach((input) => {
-    let active = false;
-    input.addEventListener('click', () => {
-        const key = returnButtonValue(input);
-        calculateZUS(key);
-        if(!active) {
-            input.classList.remove('zusButtonsOff');
-            input.classList.add('zusButtonsOn');
-            active = !active;
-            }
-        else{
-            input.classList.remove('zusButtonsOn');
-            input.classList.add('zusButtonsOff');
-            active = !active;
-        }
-        console.log(input);
-    });
-});
-
-
-
-sicknessButton.addEventListener("click",() => {
-    console.log("Sickness clicked!");
-    }
-);

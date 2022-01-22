@@ -2,48 +2,154 @@ import { calculateNetGrossCosts } from "./calculate-netGross-costs";
 import { calculateIncome } from "./calculate-income";
 import { calculateVat } from "./calculate-Vat";
 import { calculateIncomeTax } from "./calculate-incomeTax";
+import {returnButtonValue, calculateZUS, calculateTotalZus} from "./calculate-ZUS";
 
-export const getSummaryValues = () => {
+const getIncomeValue = () => {
+    //const incomeValue = calculateIncome();
+    //return incomeValue;
+}
+
+const getNetGrossCosts = () => {
     const {
         summaryNetValue,
         summaryGrossValue
     } = calculateNetGrossCosts();
 
-    //const incomeValue = calculateIncome();
-    const vatValue = calculateVat();
-
     return {
         summaryNetValue,
-        summaryGrossValue,
-        //incomeValue,
-        vatValue,
+        summaryGrossValue
     };
 }
 
-export const displayHTMLSummary = () => {
+const getValValue = () => {
+    const vatValue = calculateVat();
+    return vatValue;
+}
+
+export const displayHTMLIncome = () => {
+
+    //let incomeHTML = document.querySelector(".incomeValue");
+    //incomeHTML.innerHTML = incomeValue;
+}
+
+export const displayHTMLCosts = () => {
     const {
         summaryNetValue,
-        summaryGrossValue,
-        //incomeValue,
-        vatValue,
-    } = getSummaryValues();
+        summaryGrossValue
+    } = getNetGrossCosts();
 
     let netCostsHTML = document.querySelector(".costsNetValue");
     let grossCostsHTML = document.querySelector(".costsGrossValue");
-    //let incomeHTML = document.querySelector(".incomeValue");
-    let vatHTML = document.querySelector(".vatValue");
-    //calculateIncomeTax();
 
-    if(calculateNetGrossCosts()||calculateIncome()) {
+    if(summaryNetValue && summaryGrossValue){
         netCostsHTML.innerHTML = summaryNetValue;
         grossCostsHTML.innerHTML = summaryGrossValue;
-        //incomeHTML.innerHTML = incomeValue;
-        vatHTML.innerHTML = vatValue;
     }
     else{
-        netCostsHTML.innerHTML = 0;
-        grossCostsHTML.innerHTML = 0;
-        //incomeHTML.innerHTML = incomeValue;
-        vatHTML.innerHTML = 0;
+        netCostsHTML.innerHTML = "";
+        grossCostsHTML.innerHTML = "";
     }
+}
+
+export const displayHTMLVat = () => {
+    const vatValue = getValValue();
+    let vatHTML = document.querySelector(".vatValue");
+    vatHTML.innerHTML = vatValue;
+}
+
+export const displayHTMLIncomeTax = () => {
+
+}
+
+export const displayHTMLAmountTax = () => {
+
+}
+
+export const displayBasicInsurance = (obj) => {
+    const {
+        retirement,
+        socialSecurity,
+        workAccident,
+        healthy,
+    } = obj;
+
+    let retirementHTML = document.querySelector(".retirement");
+    let socialSecurityHTML = document.querySelector(".socialSecurity");
+    let workAccidentHTML = document.querySelector(".workAccident");
+    let healthyHTML = document.querySelector(".healthy");
+    let totalZusHTML = document.querySelector(".totalZus");
+    const totalValue = calculateTotalZus({
+        retirement,
+        socialSecurity,
+        workAccident,
+        healthy
+    });
+
+    totalZusHTML.innerHTML = totalValue;
+    retirementHTML.innerHTML = retirement;
+    socialSecurityHTML.innerHTML = socialSecurity;
+    workAccidentHTML.innerHTML = workAccident;
+    healthyHTML.innerHTML = healthy;
+}
+
+export const clearBasicInsurance = () => {
+    let retirementHTML = document.querySelector(".retirement");
+    let socialSecurityHTML = document.querySelector(".socialSecurity");
+    let workAccidentHTML = document.querySelector(".workAccident");
+    let healthyHTML = document.querySelector(".healthy");
+    let totalZusHTML = document.querySelector(".totalZus");
+
+    retirementHTML.innerHTML = "";
+    socialSecurityHTML.innerHTML = "";
+    workAccidentHTML.innerHTML = "";
+    healthyHTML.innerHTML = "";
+    totalZusHTML.innerHTML = "";
+}
+export const addSicknessInsurance = (obj) => {
+    const {
+        retirement,
+        socialSecurity,
+        workAccident,
+        healthy,
+        sickness,
+    } = obj;
+
+    const totalValue = calculateTotalZus({
+        retirement,
+        socialSecurity,
+        workAccident,
+        healthy,
+        sickness
+    });
+
+    let totalZusHTML = document.querySelector(".totalZus");
+    let sicknessHTML = document.querySelector(".sickness");
+    sicknessHTML.innerHTML = sickness;
+    totalZusHTML.innerHTML = totalValue;
+
+}
+
+export const deleteSicknessInsurance = (obj) => {
+    const {
+        retirement,
+        socialSecurity,
+        workAccident,
+        healthy,
+        sickness,
+    } = obj;
+
+    const totalValue = calculateTotalZus({
+        retirement,
+        socialSecurity,
+        workAccident,
+        healthy
+    });
+    let sicknessHTML = document.querySelector(".sickness");
+    let totalZusHTML = document.querySelector(".totalZus");
+    sicknessHTML.innerHTML = "";
+    totalZusHTML.innerHTML = totalValue;
+}
+export const clearTotalValue = () => {
+    let totalZusHTML = document.querySelector(".totalZus");
+    totalZusHTML.innerHTML = "";
 }

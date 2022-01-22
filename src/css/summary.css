@@ -1,8 +1,9 @@
 .summaryWindow {
+
     width: 20%;
-    height: 350px;
+    height: 570px;
     background-color: #1c112d;
-    margin: 25px 50px 25px 50px;
+    margin: 25px 50px 50px 50px;
     padding: 10px;
     border-radius: 10px;
     display: flex;

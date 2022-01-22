@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid";
 import { saveData, getData } from '../localStorage-operations/storeData';
 import { CommonRowActions, rowActions } from "./common-row-actions";
 import { clearHtmlTable } from "./delete-item";
-import {displayHTMLSummary } from "../summary-window/displayHTML-summary";
+import {displayHTMLCosts} from "../summary-window/displayHTML-summary";
 
 export const createTable = () => {
     const tableFromStorage = getData('app_table_data');
@@ -102,7 +102,7 @@ export const loadTable = () => {
     Object.values(freshTableData.rows).forEach((row) => {
         displayHTMLRow(row, table);
     });
-    displayHTMLSummary();
+    displayHTMLCosts();
 }
 
 export const writeElementToTable = (obj) => {
