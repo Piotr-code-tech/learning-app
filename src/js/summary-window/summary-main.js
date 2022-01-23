@@ -5,38 +5,46 @@ import {
     deleteSicknessInsurance,
     clearTotalValue,
     displayHTMLVat
-} from "./displayHTML-summary";
-import {returnButtonValue, calculateZUS} from "./calculate-ZUS";
+} from "./display-html-summary";
+import {returnButtonValue, calculateZus} from "./calculate-zus";
+import { getAppState, setAppState } from "../app-state/app-state";
 
 const zusButtons = document.querySelectorAll(".zusType");
-const sicknessButton = document.querySelector(".sickenssState");
+const sicknessButton = document.querySelector(".sicknessState");
 const calculateButton = document.querySelector(".calculateButton");
+
+
+sicknessButton.addEventListener("click",() => {
+        const {
+            healthCareContribution,
+            zusStatus: currentZusType
+        } = getAppState();
+
+        const valuesToDisplay = calculateZus(currentZusType);
+        setAppState({
+            healthCareContribution: !healthCareContribution,
+        });
+
+        if (getAppState().healthCareContribution) {
+            addSicknessInsurance(valuesToDisplay);
+        } else {
+            deleteSicknessInsurance(valuesToDisplay);
+        }
+    }
+);
 
 zusButtons.forEach((input) => {
     let active = false;
     input.addEventListener('click', () => {
         const key = returnButtonValue(input);
-        const valuesToDisplay = calculateZUS(key);
-        let sicknessButtonState = false;
-        sicknessButton.addEventListener("click",() => {
-            if(!sicknessButtonState){
-                addSicknessInsurance(valuesToDisplay);
-                sicknessButtonState = !sicknessButtonState;
-            }
-            else{
-                deleteSicknessInsurance(valuesToDisplay);
-                sicknessButtonState = !sicknessButtonState;
-            }
-            }
-        );
+        const valuesToDisplay = calculateZus(key);
 
-        if(!active) {
+        if (!active) {
             input.classList.remove('zusButtonsOff');
             input.classList.add('zusButtonsOn');
             active = !active;
             displayBasicInsurance(valuesToDisplay);
-            }
-        else{
+        } else {
             input.classList.remove('zusButtonsOn');
             input.classList.add('zusButtonsOff');
             active = !active;

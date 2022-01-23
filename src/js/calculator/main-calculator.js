@@ -1,7 +1,7 @@
 import { calculateValue } from "./calculate-value";
 import { displayResult } from "./display-result";
 import { reset } from "./reset-values";
-import { } from "../summary-window/displayHTML-summary";
+import { setInitialAppState } from "../app-state/app-state";
 
 const calculateButton = document.querySelector(".calculateButton");
 const resetButton = document.querySelector(".resetButton");
@@ -21,7 +21,17 @@ resetButton.addEventListener('click', () => {
 });
 
 window.addEventListener('load', () => {
-    displayResult();
+    setInitialAppState();
+    // setInputValues();
+    // 1. getAppState from storage
+    // 2. Find all required button/inputs
+    // 3. Set buttons/inputs state based on app state from storage
 
+    // calculateResults();
+    // 1. calculate summary based on data from storage
+    // - app state
+    // - table data
+
+    displayResult();
 });
 

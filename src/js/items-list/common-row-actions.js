@@ -1,4 +1,4 @@
-import { saveData } from '../localStorage-operations/storeData';
+import { saveData } from '../local-storage-operations/store-data';
 import { clearHtmlTable } from "./delete-item";
 import { loadTable } from "./add-item";
 

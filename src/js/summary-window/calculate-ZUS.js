@@ -1,42 +1,33 @@
-const setZusContributions = () => {
-    return {
-        retirement: 0,
-        socialSecurity: 0,
-        workAccident: 0,
-        sickness: 0,
-        healthy: 0
-    };
+import { setAppState } from "../app-state/app-state";
 
+export const ZUS_TYPE = {
+    RELIEF_TO_START: 'RELIEF_TO_START',
+    REDUCED_ZUS: 'REDUCED_ZUS',
+    NO_RELIEF: 'NO_RELIEF',
 }
 
-const reliefToStart = () => {
-    const zusContributions = setZusContributions();
-    zusContributions.healthy = 381.81;
-    zusContributions.retirement = 0;
-    zusContributions.socialSecurity = 0;
-    zusContributions.workAccident = 0;
-    zusContributions.sickness = 0;
-    return zusContributions;
+const reliefToStart = {
+    healthy: 381.81,
+    retirement: 0,
+    socialSecurity: 0,
+    workAccident: 0,
+    sickness: 0,
 }
 
-const reducedZus = () => {
-    const zusContributions = setZusContributions();
-    zusContributions.retirement = 163.97;
-    zusContributions.socialSecurity = 67.20;
-    zusContributions.workAccident = 14.03;
-    zusContributions.healthy = 381.81;
-    zusContributions.sickness = 20.58;
-    return zusContributions;
+const reducedZus = {
+    retirement: 163.97,
+    socialSecurity: 67.20,
+    workAccident: 14.03,
+    healthy: 381.81,
+    sickness: 20.58,
 }
 
-const noRelief = () => {
-    const zusContributions = setZusContributions();
-    zusContributions.retirement = 615.93;
-    zusContributions.socialSecurity = 252.43;
-    zusContributions.workAccident = 52.70;
-    zusContributions.healthy = 381.81;
-    zusContributions.sickness = 77.31;
-    return zusContributions;
+const noRelief = {
+    retirement: 615.93,
+    socialSecurity: 252.43,
+    workAccident: 52.70,
+    healthy: 381.81,
+    sickness: 77.31,
 }
 
 export const calculateTotalZus = (obj) => {
@@ -48,15 +39,19 @@ export const calculateTotalZus = (obj) => {
 }
 
 const zusType = new Map([
-    [1,reliefToStart],
-    [2,reducedZus],
-    [3,noRelief]
+    [ZUS_TYPE.RELIEF_TO_START, reliefToStart],
+    [ZUS_TYPE.REDUCED_ZUS, reducedZus],
+    [ZUS_TYPE.NO_RELIEF, noRelief]
 ]);
 
 export const returnButtonValue = (button) => {
-    return Number(button.value);
+    const value = button.value;
+    setAppState({
+        zusStatus: value,
+    });
+
+    return value;
 }
-export const calculateZUS = (key) => {
-    let calculate = zusType.get(key);
-    return calculate();
+export const calculateZus = (key) => {
+    return zusType.get(key);
 }

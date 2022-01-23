@@ -1,10 +1,10 @@
 import { TableBuilder } from "./Table";
 import { TableRowBuilder } from "./TableRow";
 import { v4 as uuid } from "uuid";
-import { saveData, getData } from '../localStorage-operations/storeData';
+import { saveData, getData } from '../local-storage-operations/store-data';
 import { CommonRowActions, rowActions } from "./common-row-actions";
 import { clearHtmlTable } from "./delete-item";
-import {displayHTMLCosts} from "../summary-window/displayHTML-summary";
+import {displayHTMLCosts} from "../summary-window/display-html-summary";
 
 export const createTable = () => {
     const tableFromStorage = getData('app_table_data');

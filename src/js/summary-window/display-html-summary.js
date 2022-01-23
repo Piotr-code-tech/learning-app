@@ -1,8 +1,6 @@
-import { calculateNetGrossCosts } from "./calculate-netGross-costs";
-import { calculateIncome } from "./calculate-income";
-import { calculateVat } from "./calculate-Vat";
-import { calculateIncomeTax } from "./calculate-incomeTax";
-import {returnButtonValue, calculateZUS, calculateTotalZus} from "./calculate-ZUS";
+import { calculateNetGrossCosts } from "./calculate-net-gross-costs";
+import { calculateVat } from "./calculate-vat";
+import { calculateTotalZus } from "./calculate-zus";
 
 const getIncomeValue = () => {
     //const incomeValue = calculateIncome();
@@ -22,8 +20,7 @@ const getNetGrossCosts = () => {
 }
 
 const getValValue = () => {
-    const vatValue = calculateVat();
-    return vatValue;
+    return calculateVat();
 }
 
 export const displayHTMLIncome = () => {
@@ -135,7 +132,6 @@ export const deleteSicknessInsurance = (obj) => {
         socialSecurity,
         workAccident,
         healthy,
-        sickness,
     } = obj;
 
     const totalValue = calculateTotalZus({

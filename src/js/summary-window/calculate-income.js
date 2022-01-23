@@ -1,5 +1,5 @@
-import { calculateNetGrossCosts } from "./calculate-netGross-costs";
-import { getData } from '../localStorage-operations/storeData';
+import { calculateNetGrossCosts } from "./calculate-net-gross-costs";
+import { getData } from '../local-storage-operations/store-data';
 
 export const calculateIncome = () => {
     let incomeNetValue = 0;

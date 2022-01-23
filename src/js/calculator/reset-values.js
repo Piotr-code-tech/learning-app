@@ -1,4 +1,4 @@
-import { saveData } from '../localStorage-operations/storeData';
+import { saveData } from '../local-storage-operations/store-data';
 
 export const reset = () => {
     document.querySelector("#grossRadioButton").checked = false;

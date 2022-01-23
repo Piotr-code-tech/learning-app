@@ -1,4 +1,4 @@
-import { getData } from '../localStorage-operations/storeData';
+import { getData } from '../local-storage-operations/store-data';
 
 const getTaxType = () => {
     const taxPercent = Number(document.querySelector(".incomeTax").value);

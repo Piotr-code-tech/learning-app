@@ -1,4 +1,4 @@
-import { getData } from '../localStorage-operations/storeData';
+import { getData } from '../local-storage-operations/store-data';
 
 export const calculateNetGrossCosts = () => {
 
