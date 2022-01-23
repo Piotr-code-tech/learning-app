@@ -1,10 +1,6 @@
 import { calculateNetGrossCosts } from "./calculate-net-gross-costs";
 import { getData } from '../local-storage-operations/store-data';
-
-const getTaxIncome = () => {
-    const taxPercent = Number(document.querySelector(".vatTax").value);
-    return taxPercent;
-}
+import { setAppState } from "../app-state/app-state";
 
 const calculateVatFromIncome = (tax) => {
     const {
@@ -30,8 +26,8 @@ const calculateVatFromCosts = () => {
     return costsVat;
 }
 
-export const calculateVat = () => {
-    const vatIncome = calculateVatFromIncome(getTaxIncome());
+export const calculateVat = (taxPercent) => {
+    const vatIncome = calculateVatFromIncome(taxPercent);
     const vatCosts = calculateVatFromCosts();
 
     const vat = vatIncome - vatCosts;

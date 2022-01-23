@@ -8,11 +8,14 @@ import {
 } from "./display-html-summary";
 import {returnButtonValue, calculateZus} from "./calculate-zus";
 import { getAppState, setAppState } from "../app-state/app-state";
+import { calculateVat } from "./calculate-Vat";
+import {calculateIncomeTax} from "./calculate-income-tax";
 
 const zusButtons = document.querySelectorAll(".zusType");
 const sicknessButton = document.querySelector(".sicknessState");
 const calculateButton = document.querySelector(".calculateButton");
-
+const vatSelector = document.querySelector(".vatTax");
+const incomeTaxSelector = document.querySelector(".incomeTax");
 
 sicknessButton.addEventListener("click",() => {
         const {
@@ -40,20 +43,36 @@ zusButtons.forEach((input) => {
         const valuesToDisplay = calculateZus(key);
 
         if (!active) {
-            input.classList.remove('zusButtonsOff');
-            input.classList.add('zusButtonsOn');
             active = !active;
+            setAppState({
+                zusStatus: key,
+            });
             displayBasicInsurance(valuesToDisplay);
         } else {
-            input.classList.remove('zusButtonsOn');
-            input.classList.add('zusButtonsOff');
+            input.checked = false;
             active = !active;
+            setAppState({
+                zusStatus: "",
+            });
             clearBasicInsurance();
             clearTotalValue();
         }
     });
 });
 
-calculateButton.addEventListener('click', () => {
-    displayHTMLVat();
+vatSelector.addEventListener('change',() => {
+    const vatTaxPercent = Number(document.querySelector(".vatTax").value);
+    setAppState({
+        vat: vatTaxPercent,
+    });
+    const vat = calculateVat(vatTaxPercent);
+    displayHTMLVat(vat);
+});
+
+incomeTaxSelector.addEventListener("change", () => {
+    const incomeTaxType = Number(document.querySelector(".incomeTax").value)
+    setAppState({
+        taxationType: incomeTaxType,
+    });
+    calculateIncomeTax(incomeTaxType);
 });

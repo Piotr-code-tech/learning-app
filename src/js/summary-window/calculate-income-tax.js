@@ -1,10 +1,5 @@
 import { getData } from '../local-storage-operations/store-data';
 
-const getTaxType = () => {
-    const taxPercent = Number(document.querySelector(".incomeTax").value);
-    return taxPercent;
-}
-
 const calculateLumpSum = () => {
     console.log("Lump sum");
 }
@@ -28,8 +23,7 @@ const incomeTaxType = new Map([
     [4,calculateSecondTaxThreshold]
 ]);
 
-export const calculateIncomeTax = () => {
-    const key = getTaxType();
-    const calculate = incomeTaxType.get(key);
+export const calculateIncomeTax = (taxType) => {
+    const calculate = incomeTaxType.get(taxType);
     calculate();
 }

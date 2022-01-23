@@ -21,29 +21,55 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    list-style-type: none;
+    padding: 0;
 }
-.zusType {
-    font-size: 20px;
-    padding: 7px 7px;
-    margin-left: 10px;
-    margin-right: 20px;
+.zusButtons li {
+    float: left;
+    margin: 0;
+    width: 170px;
+    height: 50px;
     position: relative;
-    border: none;
-    border-radius: 5px;
+}
+.zusButtons label,
+.zusButtons input {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.zusButtons input[type="radio"] {
+    opacity: 0.01;
+    z-index: 100;
+    width: 170px;
+    height: 50px;
     cursor: pointer;
-    transition: all 0.3s;
+    margin: 0;
+    padding: 0;
 }
-.zusButtonsChecked {
-    color: #afb6c0;
-    background: #009900;
-    box-shadow: none;
+.zusButtons label {
+  border: none;
+  border-radius: 5px;
+  z-index: 90;
+  font-size: 20px;
+  transition: all 0.3s;
+  padding: 15px 10px;
+  background: #3f4650;
+  color: #131313;
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+  text-align: center;
 }
-.zusButtonsOff {
-    background: #3f4650;
-    color: #131313;
-    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+.zusButtons label:hover {
+  color: #afb6c0;
+  background: #009900;
+  box-shadow: none;
 }
-.zusButtonsOn{
+
+.zusButtons input[type="radio"]:checked+label,
+.Checked+label {
     color: #afb6c0;
     background: #009900;
     box-shadow: none;

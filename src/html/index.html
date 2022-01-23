@@ -63,11 +63,20 @@
             <div class = "zusAndSpendings">
                 <div class="zusContainer">
                     <h2>Information about ZUS</h2>
-                    <div class="zusButtons">
-                        <button value="RELIEF_TO_START" class="zusType zusButtonsOff">Relief to start</button>
-                        <button value="REDUCED_ZUS" class="zusType zusButtonsOff">Reduced ZUS</button>
-                        <button value="NO_RELIEF" class="zusType zusButtonsOff">No relief</button>
-                    </div>
+                    <ul class="zusButtons">
+                        <li>
+                            <input type="radio" value="RELIEF_TO_START" class="zusType" name="zusType">
+                            <label>Relief to start</label>
+                        </li>
+                        <li>
+                            <input type="radio" value="REDUCED_ZUS" class="zusType" name="zusType">
+                            <label>Reduced ZUS</label>
+                        </li>
+                        <li>
+                            <input type="radio" value="NO_RELIEF" class="zusType" name="zusType">
+                            <label>No relief</label>
+                        </li>
+                    </ul>
                     <div class="sicknessToggleSwitch">
                         <p>Sickness insurance :</p>
                         <label class="sicknessSwitch">

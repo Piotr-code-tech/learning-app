@@ -1,5 +1,4 @@
 import { calculateNetGrossCosts } from "./calculate-net-gross-costs";
-import { calculateVat } from "./calculate-vat";
 import { calculateTotalZus } from "./calculate-zus";
 
 const getIncomeValue = () => {
@@ -17,10 +16,6 @@ const getNetGrossCosts = () => {
         summaryNetValue,
         summaryGrossValue
     };
-}
-
-const getValValue = () => {
-    return calculateVat();
 }
 
 export const displayHTMLIncome = () => {
@@ -48,10 +43,9 @@ export const displayHTMLCosts = () => {
     }
 }
 
-export const displayHTMLVat = () => {
-    const vatValue = getValValue();
+export const displayHTMLVat = (vat) => {
     let vatHTML = document.querySelector(".vatValue");
-    vatHTML.innerHTML = vatValue;
+    vatHTML.innerHTML = vat;
 }
 
 export const displayHTMLIncomeTax = () => {

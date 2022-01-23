@@ -1,5 +1,3 @@
-import { setAppState } from "../app-state/app-state";
-
 export const ZUS_TYPE = {
     RELIEF_TO_START: 'RELIEF_TO_START',
     REDUCED_ZUS: 'REDUCED_ZUS',
@@ -46,10 +44,6 @@ const zusType = new Map([
 
 export const returnButtonValue = (button) => {
     const value = button.value;
-    setAppState({
-        zusStatus: value,
-    });
-
     return value;
 }
 export const calculateZus = (key) => {
