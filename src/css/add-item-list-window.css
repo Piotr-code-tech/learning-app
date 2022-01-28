@@ -40,7 +40,7 @@
 .vatRate {
     margin: 20px 0px 0px 0px;
     font-size: 20px;
-    width: 52%;
+    width: 100%;
 }
 .addWindowButtons{
     display: flex;

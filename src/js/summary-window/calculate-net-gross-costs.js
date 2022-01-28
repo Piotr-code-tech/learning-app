@@ -1,22 +1,20 @@
-import { getData } from '../local-storage-operations/store-data';
+import { getData, storageKeys } from '../local-storage-operations/store-data';
 
 export const calculateNetGrossCosts = () => {
 
-    const actualTable = getData('app_table_data');
-    let summaryNetValue = 0;
-    let summaryGrossValue = 0;
-    if(actualTable.rows) {
-        Object.values(actualTable.rows).forEach((row) => {
-            const netValue = row.price.net;
-            const grossValue = row.price.gross;
+    const actualTable = getData(storageKeys.appTableData);
+    const defaultValues = { summaryGrossValue: 0, summaryNetValue: 0 };
 
-            summaryNetValue = summaryNetValue + netValue;
-            summaryGrossValue = summaryGrossValue + grossValue;
-        });
-    }
-    return {
-        summaryNetValue,
-        summaryGrossValue,
-    };
+    return actualTable.rows ? Object.values(actualTable.rows).map(({price: { net, gross }}) => {
+        return {
+            net,
+            gross,
+        };
+    }).reduce(({ summaryGrossValue, summaryNetValue }, { gross, net } ) => {
+        return {
+            summaryGrossValue: summaryGrossValue + gross,
+            summaryNetValue: summaryNetValue + net,
+        }
+    }, defaultValues) : defaultValues;
 }
 

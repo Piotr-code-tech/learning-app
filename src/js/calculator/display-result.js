@@ -1,13 +1,14 @@
-import { getData } from '../local-storage-operations/store-data';
+import { getData, storageKeys} from '../local-storage-operations/store-data';
 
 export const displayResult = () => {
+    const earnedValueData = getData(storageKeys.appEarnedValue);
 
-    if(getData("app_earnedValue_data")){
+    if(earnedValueData){
         const {
             writtenIntoPlace,
             net,
             gross,
-        } = getData("app_earnedValue_data");
+        } = earnedValueData;
 
         let netHTML = document.querySelector(".netValue");
         let grossHTML = document.querySelector(".grossValue");

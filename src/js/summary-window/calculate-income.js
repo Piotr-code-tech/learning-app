@@ -1,5 +1,5 @@
 import { calculateNetGrossCosts } from "./calculate-net-gross-costs";
-import { getData } from '../local-storage-operations/store-data';
+import { getData, storageKeys } from '../local-storage-operations/store-data';
 
 export const calculateIncome = () => {
     let incomeNetValue = 0;
@@ -17,7 +17,7 @@ export const calculateIncome = () => {
         netCosts = summaryNetValue;
     }
 
-    const incomeValues = getData("app_earnedValue_data");
+    const incomeValues = getData(storageKeys.appEarnedValue);
 
     if(incomeValues) {
         const {

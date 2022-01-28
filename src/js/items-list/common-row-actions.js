@@ -1,16 +1,16 @@
-import { saveData } from '../local-storage-operations/store-data';
+import { saveData, storageKeys} from '../local-storage-operations/store-data';
 import { clearHtmlTable } from "./delete-item";
 import { loadTable } from "./add-item";
 
 export const CommonRowActions = {
-    DELETE: 1,
+    DELETE: "deleteItemFromTable",
 }
 
 export const rowActions = {
     [CommonRowActions.DELETE]: {
         action: ({id, table}) => {
             delete table.rows[id];
-            saveData(table,'app_table_data');
+            saveData(table,storageKeys.appTableData);
             clearHtmlTable();
             loadTable();
         },

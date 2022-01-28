@@ -1,10 +1,5 @@
-import { saveData } from '../local-storage-operations/store-data';
-
-const getTaxValue = () => {
-    const taxValue = Number(document.querySelector(".vatTax").value);
-    return taxValue;
-}
-
+import { saveData,  storageKeys} from '../local-storage-operations/store-data';
+import { getVatValue } from '../summary-window/calculate-Vat';
 export const calculateNetValue = (value,tax) => {
     let calculatedValue = 0;
     calculatedValue = value * (1 + tax);
@@ -21,22 +16,22 @@ export const calculateValue = (writtenValue, choseRadioButton) => {
     let returnValue = 0;
     if(writtenValue){
         if (choseRadioButton === document.querySelector('input[id="grossRadioButton"]').value) {
-            returnValue = calculateNetValue(writtenValue, getTaxValue());
+            returnValue = calculateNetValue(writtenValue, getVatValue());
             const valuesToSave = {
                 writtenIntoPlace: writtenValue ?? 0,
                 net: writtenValue ?? 0,
                 gross: returnValue ?? 0,
             }
-            saveData(valuesToSave,"app_earnedValue_data");
+            saveData(valuesToSave,storageKeys.appEarnedValue);
         }
         else if (choseRadioButton === document.querySelector('input[id="netRadioButton"]').value) {
-            returnValue = calculateGrossValue(writtenValue, getTaxValue());
+            returnValue = calculateGrossValue(writtenValue, getVatValue());
             const valuesToSave = {
                 writtenIntoPlace: writtenValue ?? 0,
                 net: returnValue ?? 0,
                 gross: writtenValue ?? 0,
             }
-            saveData(valuesToSave,"app_earnedValue_data");
+            saveData(valuesToSave,storageKeys.appEarnedValue);
         }
     }
 }

@@ -1,13 +1,13 @@
 import { TableBuilder } from "./Table";
 import { TableRowBuilder } from "./TableRow";
 import { v4 as uuid } from "uuid";
-import { saveData, getData } from '../local-storage-operations/store-data';
+import { saveData, getData, storageKeys } from '../local-storage-operations/store-data';
 import { CommonRowActions, rowActions } from "./common-row-actions";
 import { clearHtmlTable } from "./delete-item";
 import {displayHTMLCosts} from "../summary-window/display-html-summary";
 
 export const createTable = () => {
-    const tableFromStorage = getData('app_table_data');
+    const tableFromStorage = getData(storageKeys.appTableData);
     const rows = tableFromStorage?.rows;
     const table = new TableBuilder();
     return table
@@ -98,7 +98,7 @@ const getRowActions = ({actions, id, table}) => {
 
 export const loadTable = () => {
     clearHtmlTable();
-    const freshTableData = getData('app_table_data');
+    const freshTableData = getData(storageKeys.appTableData);
     Object.values(freshTableData.rows).forEach((row) => {
         displayHTMLRow(row, table);
     });
@@ -127,6 +127,6 @@ export const writeElementToTable = (obj) => {
     }
 
     addRow(newRow);
-    saveData(table,'app_table_data');
+    saveData(table,storageKeys.appTableData);
     loadTable();
 }

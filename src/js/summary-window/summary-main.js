@@ -60,7 +60,7 @@ zusButtons.forEach((input) => {
     });
 });
 
-vatSelector.addEventListener('change',() => {
+/*vatSelector.addEventListener('change',() => {
     const vatTaxPercent = Number(document.querySelector(".vatTax").value);
     setAppState({
         vat: vatTaxPercent,
@@ -75,4 +75,4 @@ incomeTaxSelector.addEventListener("change", () => {
         taxationType: incomeTaxType,
     });
     calculateIncomeTax(incomeTaxType);
-});
+});*/

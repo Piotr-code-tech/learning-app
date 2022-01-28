@@ -12,3 +12,9 @@ export const getData = (key) => {
         return null;
     }
 };
+
+export const storageKeys = {
+    appEarnedValue: "app-earned-value-data",
+    appTableData: "app-table-data",
+    appState: "app-state"
+}

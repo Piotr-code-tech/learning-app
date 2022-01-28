@@ -1,9 +1,7 @@
 import { ZUS_TYPE } from "../summary-window/calculate-zus";
-import { getData, saveData } from "../local-storage-operations/store-data";
+import { getData, saveData, storageKeys} from "../local-storage-operations/store-data";
 
-const APP_STATE_KEY = 'APP_STATE';
-
-export const appState = {
+export const initialAppState = {
     vat: '0.23',
     taxationType: '1',
     zusStatus: ZUS_TYPE.RELIEF_TO_START,
@@ -11,18 +9,18 @@ export const appState = {
 }
 
 export const setInitialAppState = () => {
-    const storedAppState = getData(APP_STATE_KEY);
-    const state = storedAppState ?? appState;
+    const storedAppState = getData(storageKeys.appState);
+    const state = storedAppState ?? storageKeys.appState;
 
-    saveData(state, APP_STATE_KEY);
+    saveData(state, storageKeys.appState);
 }
 
 export const setAppState = (partialState) => {
-    const currentState = getData(APP_STATE_KEY);
+    const currentState = getData(storageKeys.appState);
 
-    saveData({...currentState, ...partialState}, APP_STATE_KEY);
+    saveData({...currentState, ...partialState}, storageKeys.appState);
 }
 
 export const getAppState = () => {
-    return getData(APP_STATE_KEY);
+    return getData(storageKeys.appState);
 }

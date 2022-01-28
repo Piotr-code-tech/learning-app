@@ -2,6 +2,10 @@ import { calculateValue } from "./calculate-value";
 import { displayResult } from "./display-result";
 import { reset } from "./reset-values";
 import { setInitialAppState } from "../app-state/app-state";
+import { availableVatOption } from "../summary-window/calculate-Vat";
+import { availableIncomeTaxOption } from "../summary-window/calculate-income-tax"
+import { addOption } from '../html-operation/adding-select-option';
+import { availableNewItemVatOption } from "../items-list/calculate-new-item-value";
 
 const calculateButton = document.querySelector(".calculateButton");
 const resetButton = document.querySelector(".resetButton");
@@ -21,6 +25,13 @@ resetButton.addEventListener('click', () => {
 });
 
 window.addEventListener('load', () => {
+    const vatOptions = availableVatOption;
+    addOption(vatOptions);
+    const incomeTaxOption = availableIncomeTaxOption;
+    addOption(incomeTaxOption);
+    const newItemVatOption = availableNewItemVatOption;
+    addOption(newItemVatOption);
+
     setInitialAppState();
     // setInputValues();
     // 1. getAppState from storage

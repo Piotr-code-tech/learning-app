@@ -20,24 +20,8 @@
                 <button class="calculateButton">Calculate</button>
                 <button class="resetButton">Reset</button>
             </div>
-            <div>
-                <select class="vatTax" required>
-                    <option value="" disabled selected hidden>Select VAT</option>
-                    <option value="0.23">23%</option>
-                    <option value="0.08">8%</option>
-                    <option value="0.05">5%</option>
-                    <option value="0">0%</option>
-                </select>
-            </div>
-            <div>
-                <select class="incomeTax" required>
-                    <option value="" disabled selected hidden>Form of taxation</option>
-                    <option value="1">Lump sum 15%</option>
-                    <option value="2">Tax scale 17%/32%</option>
-                    <option value="3">Flat rate tax 19%</option>
-                    <option value="4">Second tax threshold 32%</option>
-                </select>
-            </div>
+            <div class="vatTaxContainer"></div>
+            <div class="incomeTaxContainer"></div>
             <div>
                 <p class="radioInputHead">Which value do you want to calculate :</p>
             </div>
@@ -82,8 +66,8 @@
                         <label class="sicknessSwitch">
                             <input type="checkbox" class="sicknessState">
                             <div class="slider round">
-                                <span class="on">ON</span>
-                                <span class="off">OFF</span>
+                                <span class="sicknessOn">ON</span>
+                                <span class="sicknessOff">OFF</span>
                             </div>
                         </label>
                     </div>
@@ -162,13 +146,7 @@
                 <p class = "addWindowHead">Adding New Item</p>
                 <input type = "text" class = "nameListElement" placeholder = "Name of product">
                 <input type = "text" class = "categoryListElement" placeholder = "Category">
-                <select required class="vatRate">
-                    <option value="" disabled selected hidden>Select VAT</option>
-                    <option value="0.23">23%</option>
-                    <option value="0.08">8%</option>
-                    <option value="0.05">5%</option>
-                    <option value="0">0%</option>
-                </select>
+                <div class="newItemVatContainer"></div>
                 <p class="addWindowSelectHead">Select a value :</p>
                 <div class="addNetValue">
                     <input type="radio" id="addNet" name="checkValue" value="net" checked>

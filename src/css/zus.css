@@ -134,12 +134,12 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-.on
+.sicknessOn
 {
   display: none;
 }
 
-.off
+.sicknessOff
 {
   color: black;
   position: absolute;
@@ -150,7 +150,7 @@ input:checked + .slider:before {
   font-family: Verdana, sans-serif;
 }
 
-.on
+.sicknessOn
 {
   color: black;
   position: absolute;
@@ -161,8 +161,8 @@ input:checked + .slider:before {
   font-family: Verdana, sans-serif;
 }
 
-input:checked+ .slider .on
+input:checked+ .slider .sicknessOn
 {display: block;}
 
-input:checked + .slider .off
+input:checked + .slider .sicknessOff
 {display: none;}
