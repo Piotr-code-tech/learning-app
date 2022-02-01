@@ -1,4 +1,22 @@
-const taxValue = 0.23;
+const netValueOption = document.querySelector(".newNetValue");
+
+export const availableNewItemVatOption = {
+    destination: ".newItemVatContainer",
+    selectClassName: "vatRate",
+    headingName: "Select Vat",
+    options : {
+        "23%": 0.23,
+        "8%": 0.08,
+        "5%": 0.05,
+        "0%": 0
+    }
+}
+
+const getTaxValue = () => {
+    let taxValueOption = document.querySelector(".vatRate");
+    const vatValue = Number(taxValueOption.value);
+    return vatValue;
+}
 
 export const getValueToCalculate = () => {
 
@@ -19,6 +37,7 @@ export const getCheckedInput = () => {
 export const calculateNewItem = (val, option) => {
     let result = 0;
     var dataArr = Object.values(val);
+    const taxValue = getTaxValue();
     if(option === document.querySelector("#addNet").value) {
         let net = dataArr[0];
         result = net * (1 + taxValue);
@@ -56,3 +75,10 @@ export const disableElement = (option) => {
         document.querySelector("#grossPriceListElement").value = "";
     }
 }
+netValueOption.addEventListener('oninput', () => {
+    const taxValue = getTaxValue();
+    const netGrossValue = getValueToCalculate();
+    const checkedInputNetGross = getCheckedInput();
+    let newValueItem = calculateNewItem(netGrossValue, checkedInputNetGross);
+    displayNewValue(newValueItem, checkedInputNetGross);
+});

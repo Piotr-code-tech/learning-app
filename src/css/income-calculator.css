@@ -1,0 +1,91 @@
+.calculatorContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.calculatorContainer div {
+    margin: 8px 0 0 0;
+}
+.valueInputHead {
+    font-size: 24px;
+    font-weight: bold;
+}
+.inputContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.taxForm {
+    font-size: 20px;
+}
+.vatTax {
+    font-size: 20px;
+}
+#writtenValue {
+    font-size: 20px;
+}
+.calculateButton, .resetButton {
+    font-size: 20px;
+    padding: 7px 7px;
+    margin-left: 10px;
+    position: relative;
+    background: #3f4650;
+    border: none;
+    border-radius: 5px;
+    color: #131313;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    transition: all 0.3s;
+}
+.calculateButton:hover, .resetButton:hover {
+    color: #afb6c0;
+    background: #1b1e22;
+    box-shadow: none;
+}
+.radioInputHead {
+    font-size: 24px;
+    font-weight: bold;
+}
+label {
+    font-size: 20px;
+}
+.radioContainer{
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+}
+#grossRadioButton {
+margin-right: 10px;
+cursor: pointer;
+}
+#netRadioButton {
+margin-right: 10px;
+cursor: pointer;
+}
+.resultHead {
+    font-size: 24px;
+    font-weight: bold;
+}
+.grossOutputContainer {
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content : center;
+    align-items: center;
+}
+.grossValue {
+    margin-left : 5px;
+    font-weight: bold;
+}
+.netOutputContainer {
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content : center;
+    align-items: center;
+}
+.netValue {
+    margin-left : 5px;
+    font-weight: bold;
+}

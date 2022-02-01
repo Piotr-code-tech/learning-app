@@ -1,0 +1,75 @@
+.openWindowButton {
+    font-size: 20px;
+    padding: 7px 7px;
+    margin-left: 10px;
+    margin-right: 20px;
+    position: relative;
+    background: #3f4650;
+    border: none;
+    border-radius: 5px;
+    color: #131313;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    transition: all 0.3s;
+}
+.openWindowButton:hover{
+    color: #afb6c0;
+    background: #1b1e22;
+    box-shadow: none;
+}
+.summarySpendingsContainer{
+    display: flex;
+    align-items: flex-start;
+}
+.companySpendingsTable {
+    width: 100%;
+    height: auto;
+    background-color: #1c112d;
+    margin: 25px 25px 25px 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+.headingContainer{
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #3f4650;
+}
+.tableHeading{
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+.itemTable{
+    width: 100%;
+    height: auto;
+    border-collapse: collapse;
+}
+.itemTable td {
+    border-bottom: 1px solid #3f4650;
+    padding: 5px;
+}
+.itemTable th{
+    padding: 5px;
+    border: 1px solid #3f4650;
+    font-weight: bold;
+    background-color: #121417;
+}
+.itemTable td{
+    text-align: center;
+}
+.deleteRowButton {
+    font-size: 20px;
+    background: #de1a1a;
+    border: none;
+    border-radius: 2px;
+    color: #131313;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+    transition: all 0.3s;
+}
+.deleteRowButton:hover {
+     background: #921111;
+}

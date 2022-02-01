@@ -1,0 +1,19 @@
+.mainHeadContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: #1c112d;
+    margin: 8px;
+    border-radius : 10px;
+}
+.mainHeadContainer h1 {
+    color: #A7ADC6;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 8px 0 0 0;
+    text-indent: 32px;
+}
+.mainHeadContainer p {
+    font-size: 16px;
+    margin: 8px 0;
+    text-indent: 32px;
+}

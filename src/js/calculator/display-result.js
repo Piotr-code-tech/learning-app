@@ -1,10 +1,21 @@
-export const displayResult = (resultValue, writtenValue, choosedRadioButton) => {
-    if (choosedRadioButton === document.querySelector('input[id="grossRadioButton"]').value) {
-        document.querySelector(".grossValue").innerHTML = resultValue;
-        document.querySelector(".netValue").innerHTML = writtenValue;
+import { getData, storageKeys} from '../local-storage-operations/store-data';
+
+export const displayResult = () => {
+    const earnedValueData = getData(storageKeys.appEarnedValue);
+
+    if(earnedValueData){
+        const {
+            writtenIntoPlace,
+            net,
+            gross,
+        } = earnedValueData;
+
+        let netHTML = document.querySelector(".netValue");
+        let grossHTML = document.querySelector(".grossValue");
+        let placeToWrite = document.querySelector("#writtenValue");
+        netHTML.innerHTML = net;
+        grossHTML.innerHTML = gross;
+        placeToWrite.value = writtenIntoPlace;
     }
-    else if (choosedRadioButton === document.querySelector('input[id="netRadioButton"]').value) {
-        document.querySelector(".netValue").innerHTML = resultValue;
-        document.querySelector(".grossValue").innerHTML = writtenValue;
-    }
+
 }

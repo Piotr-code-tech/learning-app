@@ -1,0 +1,12 @@
+footer {
+    background-color: #1c112d;
+    padding: 8px 0px 8px 0px;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+
+}
+.emailAdress {
+    text-decoration: none;
+}

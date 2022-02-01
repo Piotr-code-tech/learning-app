@@ -1,24 +1,21 @@
 import { TableBuilder } from "./Table";
 import { TableRowBuilder } from "./TableRow";
 import { v4 as uuid } from "uuid";
-import { getTable, saveTable } from "./store-table";
+import { saveData, getData, storageKeys } from '../local-storage-operations/store-data';
+import { CommonRowActions, rowActions } from "./common-row-actions";
+import { clearHtmlTable } from "./delete-item";
+import {displayHTMLCosts} from "../summary-window/display-html-summary";
 
 export const createTable = () => {
-    const tableFromStorage = getTable();
+    const tableFromStorage = getData(storageKeys.appTableData);
     const rows = tableFromStorage?.rows;
     const table = new TableBuilder();
-
-
     return table
         .setRows(rows)
         .build();
 };
 
 const table = createTable();
-
-// 1. build table on page load
-// 2. add delete item action (by id)
-console.log('created table from storage', table);
 
 export const createRow = ({ id, name, category, price, actions }) => {
     const tableRow = new TableRowBuilder();
@@ -38,31 +35,87 @@ export const addRow = ({ id, name, category, price, actions }) => {
 }
 
 export const getNewItemValues = () => {
-    let nameValue = document.querySelector(".nameListElement").value;
-    let categoryValue = document.querySelector(".categoryListElement").value;
-    let netPriceValue = Number(document.querySelector("#netPriceListElement").value);
-    let grossPriceValue = Number(document.querySelector("#grossPriceListElement").value);
+    let nameColumnValue = document.querySelector(".nameListElement").value;
+    let categoryColumnValue = document.querySelector(".categoryListElement").value;
+    let netPriceColumnValue = Number(document.querySelector("#netPriceListElement").value);
+    let grossPriceColumnValue = Number(document.querySelector("#grossPriceListElement").value);
 
     return {
-        nameValue,
-        categoryValue,
-        netPriceValue,
-        grossPriceValue
+        nameColumnValue,
+        categoryColumnValue,
+        netPriceColumnValue,
+        grossPriceColumnValue
     };
 }
 
-export const writeElementToTable = (obj) => {
+export const displayHTMLRow = (row, table) => {
+
+    const createTableColumn = (value) => {
+        let newHTMLTableColumn = document.createElement("td");
+        newHTMLTableColumn.innerHTML = value;
+        return newHTMLTableColumn;
+    }
+
+    const { id, name, category, price, actions } = row;
     let newHTMLRow = document.createElement("tr");
+    const nameColumn = createTableColumn(name);
+    const categoryColumn = createTableColumn(category);
+    const netColumn = createTableColumn(price.net ?? 0);
+    const grossColumn = createTableColumn(price.gross ?? 0);
+
+    newHTMLRow.appendChild(nameColumn);
+    newHTMLRow.appendChild(categoryColumn);
+    newHTMLRow.appendChild(netColumn);
+    newHTMLRow.appendChild(grossColumn);
+
+    const rowActions = getRowActions({actions, id, table});
+
+    newHTMLRow.appendChild(rowActions);
+    document.querySelector(".itemTableRows").appendChild(newHTMLRow);
+}
+
+const getRowActions = ({actions, id, table}) => {
+    const containerForButton = document.createElement("td");
+
+    actions.forEach((action) => {
+        const currentAction = rowActions[action];
+
+        if (currentAction) {
+            const actionButton = document.createElement('button');
+            actionButton.className = currentAction.className;
+            actionButton.innerHTML = currentAction.innerText;
+
+            actionButton.addEventListener('click', () => {
+                currentAction.action({id, table});
+            });
+
+            containerForButton.appendChild(actionButton);
+        }
+    });
+
+    return containerForButton;
+}
+
+export const loadTable = () => {
+    clearHtmlTable();
+    const freshTableData = getData(storageKeys.appTableData);
+    Object.values(freshTableData.rows).forEach((row) => {
+        displayHTMLRow(row, table);
+    });
+    displayHTMLCosts();
+}
+
+export const writeElementToTable = (obj) => {
     const id = uuid();
 
     const {
-        nameValue: name,
-        categoryValue: category,
-        netPriceValue: net,
-        grossPriceValue: gross
+        nameColumnValue: name,
+        categoryColumnValue: category,
+        netPriceColumnValue: net,
+        grossPriceColumnValue: gross
     } = obj;
 
-    addRow({
+    const newRow = {
         id,
         name,
         category,
@@ -70,38 +123,10 @@ export const writeElementToTable = (obj) => {
             net,
             gross,
         },
-        actions: {
-            delete: function () {
-                console.log('delete action triggered');
-            }
-        }
-    });
-
-    const createTableColumn = (value) => {
-        let newHTMLTableColumn = document.createElement("td");
-        newHTMLTableColumn.innerHTML = value;
-
-        return newHTMLTableColumn;
+        actions: [CommonRowActions.DELETE],
     }
 
-    Object.values(table).forEach((value) => {
-        const { name, category, price, } = value[id];
-
-        const nameColumn = createTableColumn(name);
-        const categoryColumn = createTableColumn(category);
-        const netColumn = createTableColumn(price?.net ?? 0);
-        const grossColumn = createTableColumn(price?.gross ?? 0);
-
-        newHTMLRow.appendChild(nameColumn);
-        newHTMLRow.appendChild(categoryColumn);
-        newHTMLRow.appendChild(netColumn);
-        newHTMLRow.appendChild(grossColumn);
-    });
-
-    let containerForButton = document.createElement("td");
-    //handle delete action add
-    newHTMLRow.appendChild(containerForButton);
-    document.querySelector(".itemTable").appendChild(newHTMLRow);
-
-    saveTable(table);
+    addRow(newRow);
+    saveData(table,storageKeys.appTableData);
+    loadTable();
 }

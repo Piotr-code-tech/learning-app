@@ -1,5 +1,5 @@
 import { closeWindow, openWindow } from "./open-close-modal";
-import { getNewItemValues, writeElementToTable } from "./add-item";
+import { getNewItemValues, writeElementToTable, loadTable } from "./add-item";
 import {getValueToCalculate, calculateNewItem, getCheckedInput, displayNewValue, disableElement} from "./calculate-new-item-value";
 
 const openWindowToAddItem = document.querySelector(".openWindowButton");
@@ -31,4 +31,8 @@ writtenValueToCalculate.forEach((input) => {
 
 disableInputToWrite.forEach((input) => {
 input.addEventListener('input', disablePlaceToWrite);
+});
+
+window.addEventListener('load', () => {
+    loadTable();
 });

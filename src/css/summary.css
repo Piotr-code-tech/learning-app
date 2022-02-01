@@ -1,0 +1,29 @@
+.summaryWindow {
+
+    width: 20%;
+    height: 570px;
+    background-color: #1c112d;
+    margin: 25px 50px 50px 50px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.summaryWindow h2 {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    margin-bottom : 20px;
+}
+.summaryWindow div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+    border-bottom: 3px solid #3f4650;
+}
+.summaryWindow div p {
+    font-weight: bold;
+}

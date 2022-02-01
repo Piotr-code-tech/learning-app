@@ -13,13 +13,15 @@
 
         <div class="calculatorContainer">
             <div>
-                <p class="valueInputHead">Please enter the value :</p>
+                <p class="valueInputHead">Enter your income:</p>
             </div>
             <div class="inputContainer">
                 <input type="number" name="value" id="writtenValue" min="1" placeholder="Value" required>
                 <button class="calculateButton">Calculate</button>
                 <button class="resetButton">Reset</button>
             </div>
+            <div class="vatTaxContainer"></div>
+            <div class="incomeTaxContainer"></div>
             <div>
                 <p class="radioInputHead">Which value do you want to calculate :</p>
             </div>
@@ -41,39 +43,122 @@
                 <span class="netValue"></span>
             </div>
         </div>
-        <div class = "companySpendingsTable">
-            <div class = "headingContainer">
-                <h2 class = "tableHeading">Company Spendings List</h2>
-                <button class = "openWindowButton">Add</button>
-            </div>
-            <table class = "itemTable">
-                <tr>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Net price</th>
-                    <th>Gross price</th>
-                    <th>Delete</th>
-                </tr>
-            </table>
-            <!-- ----------------Window to add new element to the list------------ -->
-            <div class = "addWindow">
-                <div class = "addWindowContent">
-                    <p class = "addWindowHead">Adding New Item</p>
-                    <input type = "text" class = "nameListElement" placeholder = "Name of product">
-                    <input type = "text" class = "categoryListElement" placeholder = "Category">
-                    <p class="addWindowSelectHead">Select a value :</p>
-                        <div class="addNetValue">
-                            <input type="radio" id="addNet" name="checkValue" value="net" checked>
-                            <input type = "number" id = "netPriceListElement" class="newNetValue" name="writtenNewValue" placeholder="Net price">
-                        </div>
-                        <div class="addGrossValue">
-                            <input type="radio" id="addGross" name="checkValue" value="gross">
-                            <input type = "number" id = "grossPriceListElement" class="newGrossValue disableValue" name="writtenNewValue" placeholder = "Gross price" disabled>
-                        </div>
-                    <div class="addWindowButtons">
-                        <button class = "confirmButton">Add</button>
-                        <button class = "exitButton">Exit</button>
+        <div class="summarySpendingsContainer">
+            <div class = "zusAndSpendings">
+                <div class="zusContainer">
+                    <h2>Information about ZUS</h2>
+                    <ul class="zusButtons">
+                        <li>
+                            <input type="radio" value="RELIEF_TO_START" class="zusType" name="zusType">
+                            <label>Relief to start</label>
+                        </li>
+                        <li>
+                            <input type="radio" value="REDUCED_ZUS" class="zusType" name="zusType">
+                            <label>Reduced ZUS</label>
+                        </li>
+                        <li>
+                            <input type="radio" value="NO_RELIEF" class="zusType" name="zusType">
+                            <label>No relief</label>
+                        </li>
+                    </ul>
+                    <div class="sicknessToggleSwitch">
+                        <p>Sickness insurance :</p>
+                        <label class="sicknessSwitch">
+                            <input type="checkbox" class="sicknessState">
+                            <div class="slider round">
+                                <span class="sicknessOn">ON</span>
+                                <span class="sicknessOff">OFF</span>
+                            </div>
+                        </label>
                     </div>
+                </div>
+                <div class = "companySpendingsTable">
+                    <div class = "headingContainer">
+                        <h2 class = "tableHeading">Company Spendings List</h2>
+                        <button class = "openWindowButton">Add</button>
+                    </div>
+                    <table class = "itemTable">
+                        <thead>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Net price</th>
+                        <th>Gross price</th>
+                        <th>Delete</th>
+                        </thead>
+                        <tbody class="itemTableRows"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="summaryWindow">
+                <h2>Summary</h2>
+                <div>
+                    <p> Net income :</p>
+                    <span class="incomeValue"></span>
+                </div>
+                <div>
+                    <p> Costs (Net) :</p>
+                    <span class="costsNetValue"></span>
+                </div>
+                <div>
+                    <p> Costs (Gross) :</p>
+                    <span class="costsGrossValue"></span>
+                </div>
+                <div>
+                    <p> Vat tax :</p>
+                    <span class="vatValue"></span>
+                </div>
+                <div>
+                    <p> Income tax :</p>
+                    <span class="vatValue"></span>
+                </div>
+                <div>
+                    <p>Amount od taxes :</p>
+                    <span class="taxSumValue"></span>
+                </div>
+                <div>
+                    <p> Retirement insurance :</p>
+                    <span class="retirement"></span>
+                </div>
+                <div>
+                    <p> Social security insurance :</p>
+                    <span class="socialSecurity"></span>
+                </div>
+                <div>
+                    <p> Work accident insurance :</p>
+                    <span class="workAccident"></span>
+                </div>
+                <div>
+                    <p> Sickness insurance :</p>
+                    <span class="sickness"></span>
+                </div>
+                <div>
+                    <p> Healthy insurance :</p>
+                    <span class="healthy"></span>
+                </div>
+                <div>
+                    <p> Total ZUS :</p>
+                    <span class="totalZus"></span>
+                </div>
+            </div>
+        </div>
+        <div class = "addWindow">
+            <div class = "addWindowContent">
+                <p class = "addWindowHead">Adding New Item</p>
+                <input type = "text" class = "nameListElement" placeholder = "Name of product">
+                <input type = "text" class = "categoryListElement" placeholder = "Category">
+                <div class="newItemVatContainer"></div>
+                <p class="addWindowSelectHead">Select a value :</p>
+                <div class="addNetValue">
+                    <input type="radio" id="addNet" name="checkValue" value="net" checked>
+                    <input type = "number" id = "netPriceListElement" class="newNetValue" name="writtenNewValue" placeholder="Net price">
+                </div>
+                <div class="addGrossValue">
+                    <input type="radio" id="addGross" name="checkValue" value="gross">
+                    <input type = "number" id = "grossPriceListElement" class="newGrossValue disableValue" name="writtenNewValue" placeholder = "Gross price" disabled>
+                </div>
+                <div class="addWindowButtons">
+                    <button class = "confirmButton">Add</button>
+                    <button class = "exitButton">Exit</button>
                 </div>
             </div>
         </div>
