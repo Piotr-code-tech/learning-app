@@ -16,5 +16,6 @@ export const getData = (key) => {
 export const storageKeys = {
     appEarnedValue: "app-earned-value-data",
     appTableData: "app-table-data",
+    appZusContributions: "app-zus-contributions",
     appState: "app-state"
 }

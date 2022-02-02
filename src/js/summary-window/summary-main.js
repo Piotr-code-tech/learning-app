@@ -7,15 +7,14 @@ import {
     displayHTMLVat
 } from "./display-html-summary";
 import {returnButtonValue, calculateZus} from "./calculate-zus";
+import { saveData, storageKeys } from '../local-storage-operations/store-data';
 import { getAppState, setAppState } from "../app-state/app-state";
 import { calculateVat } from "./calculate-Vat";
 import {calculateIncomeTax} from "./calculate-income-tax";
 
 const zusButtons = document.querySelectorAll(".zusType");
 const sicknessButton = document.querySelector(".sicknessState");
-const calculateButton = document.querySelector(".calculateButton");
 const vatSelector = document.querySelector(".vatTax");
-const incomeTaxSelector = document.querySelector(".incomeTax");
 
 sicknessButton.addEventListener("click",() => {
         const {
@@ -24,14 +23,16 @@ sicknessButton.addEventListener("click",() => {
         } = getAppState();
 
         const valuesToDisplay = calculateZus(currentZusType);
-        setAppState({
-            healthCareContribution: !healthCareContribution,
-        });
-
         if (getAppState().healthCareContribution) {
             addSicknessInsurance(valuesToDisplay);
+            setAppState({
+                healthCareContribution: !healthCareContribution,
+            });
         } else {
             deleteSicknessInsurance(valuesToDisplay);
+            setAppState({
+                healthCareContribution: !healthCareContribution,
+            });
         }
     }
 );
@@ -41,12 +42,12 @@ zusButtons.forEach((input) => {
     input.addEventListener('click', () => {
         const key = returnButtonValue(input);
         const valuesToDisplay = calculateZus(key);
-
         if (!active) {
             active = !active;
             setAppState({
                 zusStatus: key,
             });
+            saveData(valuesToDisplay,storageKeys.appZusContributions);
             displayBasicInsurance(valuesToDisplay);
         } else {
             input.checked = false;
@@ -54,25 +55,9 @@ zusButtons.forEach((input) => {
             setAppState({
                 zusStatus: "",
             });
+            saveData("",storageKeys.appZusContributions);
             clearBasicInsurance();
             clearTotalValue();
         }
     });
-});
-
-/*vatSelector.addEventListener('change',() => {
-    const vatTaxPercent = Number(document.querySelector(".vatTax").value);
-    setAppState({
-        vat: vatTaxPercent,
-    });
-    const vat = calculateVat(vatTaxPercent);
-    displayHTMLVat(vat);
-});
-
-incomeTaxSelector.addEventListener("change", () => {
-    const incomeTaxType = Number(document.querySelector(".incomeTax").value)
-    setAppState({
-        taxationType: incomeTaxType,
-    });
-    calculateIncomeTax(incomeTaxType);
-});*/
+})

@@ -10,7 +10,7 @@ export const initialAppState = {
 
 export const setInitialAppState = () => {
     const storedAppState = getData(storageKeys.appState);
-    const state = storedAppState ?? storageKeys.appState;
+    const state = storedAppState ?? initialAppState;
 
     saveData(state, storageKeys.appState);
 }
