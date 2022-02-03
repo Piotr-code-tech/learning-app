@@ -2,7 +2,9 @@ import { ZUS_TYPE } from "../summary-window/calculate-ZUS";
 import { getData, saveData, storageKeys} from "../local-storage-operations/store-data";
 
 export const initialAppState = {
+    income: 0,
     vat: '0.23',
+    netGrossRadioButton: "gross",
     taxationType: 'LumpSum',
     zusStatus: ZUS_TYPE.RELIEF_TO_START,
     healthCareContribution: false,

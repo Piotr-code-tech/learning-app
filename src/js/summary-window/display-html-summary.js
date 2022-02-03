@@ -3,7 +3,7 @@ import { calculateTotalZus } from "./calculate-ZUS";
 import { calculateIncomeTax } from "./calculate-income-tax";
 import { calculateVat } from "./calculate-Vat";
 import { calculateIncome } from "./calculate-income";
-
+import { calculateTotalTax } from "./calculate-total-taxes";
 export const displayHTMLIncome = () => {
 
     let incomeHTML = document.querySelector(".incomeValue");
@@ -44,7 +44,9 @@ export const displayHTMLIncomeTax = () => {
 }
 
 export const displayHTMLAmountTax = () => {
-
+    let totalTaxHTML = document.querySelector(".taxSumValue");
+    const taxToDisplay = calculateTotalTax();
+    totalTaxHTML.innerHTML = taxToDisplay;
 }
 
 export const displayBasicInsurance = (obj) => {
