@@ -1,9 +1,9 @@
-import { ZUS_TYPE } from "../summary-window/calculate-zus";
+import { ZUS_TYPE } from "../summary-window/calculate-ZUS";
 import { getData, saveData, storageKeys} from "../local-storage-operations/store-data";
 
 export const initialAppState = {
     vat: '0.23',
-    taxationType: '1',
+    taxationType: 'LumpSum',
     zusStatus: ZUS_TYPE.RELIEF_TO_START,
     healthCareContribution: false,
 }

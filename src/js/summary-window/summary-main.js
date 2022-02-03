@@ -6,7 +6,7 @@ import {
     clearTotalValue,
     displayHTMLVat
 } from "./display-html-summary";
-import {returnButtonValue, calculateZus} from "./calculate-zus";
+import {returnButtonValue, calculateZus} from "./calculate-ZUS";
 import { saveData, storageKeys } from '../local-storage-operations/store-data';
 import { getAppState, setAppState } from "../app-state/app-state";
 import { calculateVat } from "./calculate-Vat";
@@ -21,18 +21,14 @@ sicknessButton.addEventListener("click",() => {
             healthCareContribution,
             zusStatus: currentZusType
         } = getAppState();
-
+        setAppState({
+            healthCareContribution: !healthCareContribution,
+        });
         const valuesToDisplay = calculateZus(currentZusType);
         if (getAppState().healthCareContribution) {
             addSicknessInsurance(valuesToDisplay);
-            setAppState({
-                healthCareContribution: !healthCareContribution,
-            });
         } else {
             deleteSicknessInsurance(valuesToDisplay);
-            setAppState({
-                healthCareContribution: !healthCareContribution,
-            });
         }
     }
 );

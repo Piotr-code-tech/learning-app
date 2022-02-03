@@ -1,6 +1,15 @@
 import { getData, storageKeys} from '../local-storage-operations/store-data';
-//import { returnButtonValue, calculateZus} from './calculate-ZUS';
-import { calculateNetGrossCosts } from '../summary-window/calculate-net-gross-costs'
+import { calculateNetGrossCosts } from '../summary-window/calculate-net-gross-costs';
+import { setAppState } from '../app-state/app-state';
+
+export const getTaxValue = () => {
+    let taxValueOption = document.querySelector(".incomeTax");
+    const taxValue = taxValueOption.value;
+    setAppState({
+        taxationType: taxValue,
+    });
+    return taxValue;
+}
 
 const taxScale = {
     lumpSum: 0.15,
@@ -65,7 +74,7 @@ const calculateLumpSum = () => {
 
     const taxBase = net - socialContributions;
 
-    const tax = (taxBase * taxScale.lumpSum) - healthyContributionToDeduction;
+    const tax = (taxBase * taxScale.lumpSum) - taxScale.healthyContributionToDeduction;
     console.log(tax);
     return tax;
 
@@ -162,6 +171,7 @@ export const availableIncomeTaxOption = {
     }
 }
 
-export const calculateIncomeTax = (taxType) => {
-    return incomeTaxType.get(taxType);
+export const calculateIncomeTax = () => {
+    const taxType = getTaxValue();
+    return (incomeTaxType.get(taxType))();
 }

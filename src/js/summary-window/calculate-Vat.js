@@ -1,10 +1,13 @@
 import { calculateNetGrossCosts } from "./calculate-net-gross-costs";
-import { getData } from '../local-storage-operations/store-data';
+import { getData, storageKeys } from '../local-storage-operations/store-data';
 import { setAppState } from "../app-state/app-state";
 
 export const getVatValue = () => {
     let taxValueOption = document.querySelector(".vatTax");
     const vatValue = Number(taxValueOption.value);
+    setAppState({
+            vat: vatValue,
+    });
     return vatValue;
 }
 
@@ -34,7 +37,7 @@ const calculateVatFromIncome = (tax) => {
 const calculateVatFromCosts = () => {
 
     let costsVat = 0;
-    const costsTable = getData(appTableData);
+    const costsTable = getData(storageKeys.appTableData);
     Object.values(costsTable.rows).forEach((row) => {
         const netValue = row.price.net;
         const grossValue = row.price.gross;
@@ -44,8 +47,9 @@ const calculateVatFromCosts = () => {
     return costsVat;
 }
 
-export const calculateVat = (taxPercent) => {
-    const vatIncome = calculateVatFromIncome(taxPercent);
+export const calculateVat = () => {
+    const vatPercent = getVatValue();
+    const vatIncome = calculateVatFromIncome(vatPercent);
     const vatCosts = calculateVatFromCosts();
 
     const vat = vatIncome - vatCosts;
