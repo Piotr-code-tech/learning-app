@@ -31,10 +31,9 @@ export const calculateIncome = () => {
         netEarnings = net;
     }
 
-    const incomeTax = calculateIncomeTax();
-    const zusContributions = getData(storageKeys.appZusContributions);
-    const zus = calculateTotalZus(zusContributions);
+    const incomeTax = calculateIncomeTax() ?? 0;
+    const zusContributions = getData(storageKeys.appZusContributions) ?? 0;
+    const zus = calculateTotalZus(zusContributions) ?? 0;
     incomeNetValue = netEarnings - netCosts - incomeTax - zus;
-    console.log(incomeNetValue);
     return incomeNetValue;
 }

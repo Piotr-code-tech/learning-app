@@ -26,3 +26,39 @@ export const setAppState = (partialState) => {
 export const getAppState = () => {
     return getData(storageKeys.appState);
 }
+
+export const setInputState = (obj) => {
+    const {
+        income,
+        vat,
+        netGrossRadioButton,
+        taxationType,
+        zusStatus,
+        healthCareContribution
+    } = obj;
+
+    const placeToWriteIncome = document.querySelector(".writtenIncome");
+    const vatOption = document.querySelector(".vatTax");
+    const netGrossRadio = document.querySelectorAll('.radio');
+    const incomeTaxOption = document.querySelector(".incomeTax");
+    const zusButton = document.querySelectorAll(".zusType");
+    let sicknessButton = document.querySelector(".sicknessState");
+
+    placeToWriteIncome.value = income;
+    vatOption.value = vat;
+    netGrossRadio.forEach((radio) => {
+        if(radio.value == netGrossRadioButton){
+            radio.checked = true;
+        }
+    });
+    incomeTaxOption.value = taxationType;
+    zusButton.forEach((radio) => {
+        if(radio.value == zusStatus){
+            radio.checked = true;
+        }
+    });
+    if(healthCareContribution){
+        console.log(sicknessButton);
+        sicknessButton.checked = true;
+    }
+}

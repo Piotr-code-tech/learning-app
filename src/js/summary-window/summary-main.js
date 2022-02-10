@@ -16,22 +16,30 @@ const zusButtons = document.querySelectorAll(".zusType");
 const sicknessButton = document.querySelector(".sicknessState");
 const vatSelector = document.querySelector(".vatTax");
 
-sicknessButton.addEventListener("click",() => {
-        const {
-            healthCareContribution,
-            zusStatus: currentZusType
-        } = getAppState();
-        setAppState({
-            healthCareContribution: !healthCareContribution,
-        });
-        const valuesToDisplay = calculateZus(currentZusType);
-        if (getAppState().healthCareContribution) {
-            addSicknessInsurance(valuesToDisplay);
-        } else {
-            deleteSicknessInsurance(valuesToDisplay);
-        }
+export const displayHealthyContribution = () => {
+    const {
+        healthCareContribution,
+        zusStatus: currentZusType
+    } = getAppState();
+    const valuesToDisplay = calculateZus(currentZusType);
+    if (getAppState().healthCareContribution) {
+        addSicknessInsurance(valuesToDisplay);
+    } else {
+        deleteSicknessInsurance(valuesToDisplay);
     }
-);
+}
+
+sicknessButton.addEventListener("click",() => {
+    const {
+        healthCareContribution,
+        zusStatus: currentZusType
+    } = getAppState();
+    setAppState({
+        healthCareContribution: !healthCareContribution,
+    });
+    displayHealthyContribution();
+});
+
 
 zusButtons.forEach((input) => {
     let active = false;

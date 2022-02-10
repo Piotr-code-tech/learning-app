@@ -1,13 +1,15 @@
 import { calculateValue } from "./calculate-value";
 import { reset } from "./reset-values";
-import { setInitialAppState, setAppState } from "../app-state/app-state";
+import { setInitialAppState, setAppState, getAppState, setInputState } from "../app-state/app-state";
 import { availableVatOption } from "../summary-window/calculate-Vat";
 import { availableIncomeTaxOption } from "../summary-window/calculate-income-tax"
 import { addOption } from '../html-operation/adding-select-option';
 import { availableNewItemVatOption } from "../items-list/calculate-new-item-value";
 import{ calculateIncomeTax } from "../summary-window/calculate-income-tax";
-import { displayHTMLVat, displayHTMLIncomeTax, displayHTMLIncome, displayHTMLAmountTax } from "../summary-window/display-html-summary";
-
+import { displayHTMLVat, displayHTMLIncomeTax, displayHTMLIncome, displayHTMLAmountTax, displayBasicInsurance } from "../summary-window/display-html-summary";
+import { displayHealthyContribution } from"../summary-window/summary-main";
+import { storageKeys, getData } from "../local-storage-operations/store-data";
+import { updateChart, displayChart } from "../chart/chart";
 
 const calculateButton = document.querySelector(".calculateButton");
 const resetButton = document.querySelector(".resetButton");
@@ -22,6 +24,7 @@ const calculate = () => {
         netGrossRadioButton: choosedRadioButton,
     });
     let resultValue = calculateValue(writtenValue, choosedRadioButton);
+    updateChart();
 }
 
 window.addEventListener('load', () => {
@@ -35,15 +38,20 @@ window.addEventListener('load', () => {
     addOption(newItemVatOption);
 
     setInitialAppState();
-    // setInputValues();
-    // 1. getAppState from storage
-    // 2. Find all required button/inputs
-    // 3. Set buttons/inputs state based on app state from storage
+    const appStateFromLocalStorage = getAppState();
 
-    // calculateResults();
-    // 1. calculate summary based on data from storage
-    // - app state
-    // - table data
+    setInputState(appStateFromLocalStorage);
+    calculate();
+    displayHTMLVat();
+    displayHTMLIncomeTax();
+    displayHTMLIncome();
+    displayHTMLAmountTax();
+    const basicInsurance = getData(storageKeys.appZusContributions);
+    if(basicInsurance){
+        displayBasicInsurance(basicInsurance);
+        displayHealthyContribution();
+    }
+    updateChart();
 });
 
 calculateButton.addEventListener('click', () => {

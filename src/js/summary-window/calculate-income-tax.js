@@ -67,17 +67,21 @@ const calculateLumpSum = () => {
     } = getValuesToCalculation();
 
     let socialContributions = retirement + socialSecurity+ workAccident;
+    if(socialContributions){
+        if(healthCareContribution) {
+            socialContributions +=  sickness;
+        }
 
-    if(healthCareContribution) {
-        socialContributions +=  sickness;
+        const taxBase = net - socialContributions;
+
+        const tax = (taxBase * taxScale.lumpSum) - taxScale.healthyContributionToDeduction;
+        console.log(tax);
+        return tax;
     }
-
-    const taxBase = net - socialContributions;
-
-    const tax = (taxBase * taxScale.lumpSum) - taxScale.healthyContributionToDeduction;
-    console.log(tax);
-    return tax;
-
+    else {
+        const tax = net * taxScale.lumpSum;
+        return tax;
+    }
 }
 
 const calculateTaxScale = () => {
@@ -94,18 +98,29 @@ const calculateTaxScale = () => {
 
     let taxBase = net - summaryNetValue;
     taxBase = taxBase - retirement - socialSecurity - workAccident;
-
-    if(net*12 < taxScale.taxScaleThreshold){
-        taxBase = taxBase * taxScale.taxScaleLow;
-        taxBase = taxBase - taxScale.healthyContributionToDeduction;
-        console.log(taxBase);
-        return taxBase;
+    if(taxBase){
+        if(net*12 < taxScale.taxScaleThreshold){
+            taxBase = taxBase * taxScale.taxScaleLow;
+            taxBase = taxBase - taxScale.healthyContributionToDeduction;
+            console.log(taxBase);
+            return taxBase;
+        }
+        else{
+            taxBase = taxBase * taxScale.taxScaleHigh;
+            taxBase = taxBase - taxScale.healthyContributionToDeduction;
+            console.log(taxBase);
+            return taxBase;
+        }
     }
-    else{
-        taxBase = taxBase * taxScale.taxScaleHigh;
-        taxBase = taxBase - taxScale.healthyContributionToDeduction;
-        console.log(taxBase);
-        return taxBase;
+    else {
+        if(net*12 < taxScale.taxScaleThreshold){
+            const incomeTax = (net - summaryNetValue) * taxScale.taxScaleLow;
+            return incomeTax;
+        }
+        else{
+            const incomeTax = (net - summaryNetValue) * taxScale.taxScaleHigh;
+            return incomeTax;
+        }
     }
 }
 
@@ -122,12 +137,18 @@ const calculateFlatRateTax = () => {
 
      let taxBase = net - summaryNetValue;
      taxBase = taxBase - retirement - socialSecurity - workAccident;
-     taxBase = taxBase * taxScale.flatRateValue;
-     if(healthCareContribution) {
-        taxBase = taxBase - taxScale.healthyContributionToDeduction;
+     if(taxBase){
+        taxBase = taxBase * taxScale.flatRateValue;
+        if(healthCareContribution) {
+             taxBase = taxBase - taxScale.healthyContributionToDeduction;
+          }
+         console.log(taxBase);
+         return taxBase;
      }
-    console.log(taxBase);
-    return taxBase;
+     else{
+        const incomeTax = (net - summaryNetValue) * taxScale.flatRateValue;
+        return incomeTax;
+     }
 }
 
 const calculateSecondTaxThreshold = () => {
@@ -140,15 +161,18 @@ const calculateSecondTaxThreshold = () => {
             sickness,
             healthCareContribution,
      } = getValuesToCalculation();
+     const firstThreshold = taxScale.taxScaleLow * taxScale.taxScaleThreshold;
+     const secondThershold = taxScale.taxScaleHigh * ((net-summaryNetValue) - taxScale.taxScaleThreshold);
      if((net - summaryNetValue)  >= taxScale.taxScaleThreshold){
-            const firstThreshold = taxScale.taxScaleLow * taxScale.taxScaleThreshold;
-            const secondThershold = taxScale.taxScaleHigh * ((net-summaryNetValue) - taxScale.taxScaleThreshold);
-            let taxBase = (firstThreshold + secondThershold) - retirement - socialSecurity - workAccident - taxScale.healthyContributionToDeduction;
+            let taxBase = (firstThreshold + secondThershold) - retirement - socialSecurity - workAccident;
             if(healthCareContribution){
                 taxBase = taxBase - taxScale.healthyContributionToDeduction;
             }
-            console.log(taxBase);
             return taxBase;
+     }
+     else{
+        let taxBase = firstThreshold + secondThershold;
+        return taxBase;
      }
 }
 

@@ -4,8 +4,8 @@ import { calculateIncomeTax } from "./calculate-income-tax";
 import { calculateVat } from "./calculate-Vat";
 import { calculateIncome } from "./calculate-income";
 import { calculateTotalTax } from "./calculate-total-taxes";
-export const displayHTMLIncome = () => {
 
+export const displayHTMLIncome = () => {
     let incomeHTML = document.querySelector(".incomeValue");
     const incomeToDisplay = calculateIncome();
     incomeHTML.innerHTML = incomeToDisplay;
