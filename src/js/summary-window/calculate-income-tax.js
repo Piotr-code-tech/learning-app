@@ -18,42 +18,40 @@ const taxScale = {
     flatRateValue: 0.19,
     taxScaleThreshold: 85528,
     healthyContributionToDeduction: 275.51,
-
 }
 
 const getValuesToCalculation = () => {
     const income = getData(storageKeys.appEarnedValue);
-        const {
-            net,
-        } = income;
+    const {
+        net,
+    } = income;
 
-        const zusContributions = getData(storageKeys.appZusContributions);
-        const {
-            retirement,
-            socialSecurity,
-            workAccident,
-            sickness
-        } = zusContributions;
+    const zusContributions = getData(storageKeys.appZusContributions);
+    const {
+        retirement,
+        socialSecurity,
+        workAccident,
+        sickness
+    } = zusContributions;
 
-        const sicknessButtonState = getData(storageKeys.appState);
-        const {
-            healthCareContribution
-        } = sicknessButtonState;
+    const sicknessButtonState = getData(storageKeys.appState);
+    const {
+        healthCareContribution
+    } = sicknessButtonState;
 
-        const {
-            summaryGrossValue,
-            summaryNetValue
-        } = calculateNetGrossCosts()
+    const {
+        summaryNetValue
+    } = calculateNetGrossCosts()
 
-        return {
-            net,
-            retirement,
-            socialSecurity,
-            workAccident,
-            sickness,
-            healthCareContribution,
-            summaryNetValue
-        }
+    return {
+        net,
+        retirement,
+        socialSecurity,
+        workAccident,
+        sickness,
+        healthCareContribution,
+        summaryNetValue
+    }
 }
 
 const calculateLumpSum = () => {
@@ -67,6 +65,7 @@ const calculateLumpSum = () => {
     } = getValuesToCalculation();
 
     let socialContributions = retirement + socialSecurity+ workAccident;
+
     if(socialContributions){
         if(healthCareContribution) {
             socialContributions +=  sickness;

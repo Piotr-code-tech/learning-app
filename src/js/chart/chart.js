@@ -8,9 +8,7 @@ import { calculateIncomeTax } from "../summary-window/calculate-income-tax";
 const getEarnedValue = () => {
     const earnedValues = getData(storageKeys.appEarnedValue);
     const {
-        writtenIntoPlace,
-        net,
-        gross,
+        net
     } = earnedValues;
     return net;
 }
@@ -55,6 +53,10 @@ const calculateIncomeTaxPercent = () => {
 }
 
 export const updateChart = () => {
+    var Highcharts = require('highcharts');
+
+    require('highcharts/modules/exporting')(Highcharts);
+
     const chart = Highcharts.chart('chartContainer', {
             chart: {
                 backgroundColor: null,

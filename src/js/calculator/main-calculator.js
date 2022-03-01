@@ -16,12 +16,10 @@ const resetButton = document.querySelector(".resetButton");
 
 const calculate = () => {
     let writtenValue = document.querySelector("#writtenValue").value;
-    setAppState({
-        income: writtenValue,
-    });
     let choosedRadioButton = document.querySelector('input[name="radioButton"]:checked').value;
     setAppState({
-        netGrossRadioButton: choosedRadioButton,
+            income: writtenValue,
+            netGrossRadioButton: choosedRadioButton,
     });
     let resultValue = calculateValue(writtenValue, choosedRadioButton);
     updateChart();

@@ -27,7 +27,7 @@ export const getAppState = () => {
     return getData(storageKeys.appState);
 }
 
-export const setInputState = (obj) => {
+export const setInputState = (appState) => {
     const {
         income,
         vat,
@@ -35,7 +35,7 @@ export const setInputState = (obj) => {
         taxationType,
         zusStatus,
         healthCareContribution
-    } = obj;
+    } = appState;
 
     const placeToWriteIncome = document.querySelector(".writtenIncome");
     const vatOption = document.querySelector(".vatTax");
@@ -46,19 +46,17 @@ export const setInputState = (obj) => {
 
     placeToWriteIncome.value = income;
     vatOption.value = vat;
+
+
     netGrossRadio.forEach((radio) => {
-        if(radio.value == netGrossRadioButton){
-            radio.checked = true;
-        }
+        return radio.value == netGrossRadioButton ? radio.checked = true : null;
     });
     incomeTaxOption.value = taxationType;
+
     zusButton.forEach((radio) => {
-        if(radio.value == zusStatus){
-            radio.checked = true;
-        }
+        return radio.value == zusStatus ? radio.checked = true : null;
     });
     if(healthCareContribution){
-        console.log(sicknessButton);
         sicknessButton.checked = true;
     }
 }
