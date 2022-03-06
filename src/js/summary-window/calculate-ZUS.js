@@ -46,6 +46,10 @@ export const returnButtonValue = (button) => {
     const value = button.value;
     return value;
 }
+
+
+
 export const calculateZus = (key) => {
-    return zusType.get(key);
+    const zusContributions = zusType.get(key);
+    return zusContributions;
 }

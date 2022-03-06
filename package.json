@@ -29,6 +29,7 @@
   "homepage": "https://github.com/Piotr-code-tech/learning-app#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "highcharts": "^9.3.3",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

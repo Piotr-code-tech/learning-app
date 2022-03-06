@@ -1,34 +1,21 @@
 import { calculateNetGrossCosts } from "./calculate-net-gross-costs";
-import { calculateTotalZus } from "./calculate-zus";
-
-const getIncomeValue = () => {
-    //const incomeValue = calculateIncome();
-    //return incomeValue;
-}
-
-const getNetGrossCosts = () => {
-    const {
-        summaryNetValue,
-        summaryGrossValue
-    } = calculateNetGrossCosts();
-
-    return {
-        summaryNetValue,
-        summaryGrossValue
-    };
-}
+import { calculateTotalZus } from "./calculate-ZUS";
+import { calculateIncomeTax } from "./calculate-income-tax";
+import { calculateVat } from "./calculate-Vat";
+import { calculateIncome } from "./calculate-income";
+import { calculateTotalTax } from "./calculate-total-taxes";
 
 export const displayHTMLIncome = () => {
-
-    //let incomeHTML = document.querySelector(".incomeValue");
-    //incomeHTML.innerHTML = incomeValue;
+    let incomeHTML = document.querySelector(".incomeValue");
+    const incomeToDisplay = calculateIncome();
+    incomeHTML.innerHTML = incomeToDisplay;
 }
 
 export const displayHTMLCosts = () => {
     const {
-        summaryNetValue,
-        summaryGrossValue
-    } = getNetGrossCosts();
+            summaryNetValue,
+            summaryGrossValue
+    } = calculateNetGrossCosts();
 
     let netCostsHTML = document.querySelector(".costsNetValue");
     let grossCostsHTML = document.querySelector(".costsGrossValue");
@@ -43,17 +30,23 @@ export const displayHTMLCosts = () => {
     }
 }
 
-export const displayHTMLVat = (vat) => {
+export const displayHTMLVat = () => {
     let vatHTML = document.querySelector(".vatValue");
-    vatHTML.innerHTML = vat;
+    const vatToDisplay = calculateVat();
+    vatHTML.innerHTML = vatToDisplay;
+
 }
 
 export const displayHTMLIncomeTax = () => {
-
+    let incomeTaxHTML = document.querySelector(".incomeTaxValue");
+    const taxToDisplay = calculateIncomeTax();
+    incomeTaxHTML.innerHTML = taxToDisplay;
 }
 
 export const displayHTMLAmountTax = () => {
-
+    let totalTaxHTML = document.querySelector(".taxSumValue");
+    const taxToDisplay = calculateTotalTax();
+    totalTaxHTML.innerHTML = taxToDisplay;
 }
 
 export const displayBasicInsurance = (obj) => {

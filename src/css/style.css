@@ -6,6 +6,7 @@
 @import "./summary.css";
 @import "./footer.css";
 @import "./zus.css";
+@import "./chart.css";
 body {
     font-family: Ubuntu, sans-serif;
     font-size: 16px;

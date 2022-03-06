@@ -16,7 +16,7 @@
                 <p class="valueInputHead">Enter your income:</p>
             </div>
             <div class="inputContainer">
-                <input type="number" name="value" id="writtenValue" min="1" placeholder="Value" required>
+                <input type="number" name="value" class="writtenIncome" id="writtenValue" min="1" placeholder="Value" required>
                 <button class="calculateButton">Calculate</button>
                 <button class="resetButton">Reset</button>
             </div>
@@ -27,20 +27,9 @@
             </div>
             <div class="radioContainer">
                 <label>Gross value</label>
-                <input type="radio" id="grossRadioButton" name="radioButton" value="gross">
+                <input type="radio" class="radio" id="grossRadioButton" name="radioButton" value="gross">
                 <label>Net value</label>
-                <input type="radio" id="netRadioButton" name="radioButton" value="net">
-            </div>
-            <div class="resultHead">
-                <p>Result :</p>
-            </div>
-            <div class="grossOutputContainer">
-                <p>Gross value : </p>
-                <span class="grossValue"></span>
-            </div>
-            <div class="netOutputContainer">
-                <p>Net value : </p>
-                <span class="netValue"></span>
+                <input type="radio" class="radio" id="netRadioButton" name="radioButton" value="net">
             </div>
         </div>
         <div class="summarySpendingsContainer">
@@ -109,7 +98,7 @@
                 </div>
                 <div>
                     <p> Income tax :</p>
-                    <span class="vatValue"></span>
+                    <span class="incomeTaxValue"></span>
                 </div>
                 <div>
                     <p>Amount od taxes :</p>
@@ -140,6 +129,7 @@
                     <span class="totalZus"></span>
                 </div>
             </div>
+            <div id="chartContainer"></div>
         </div>
         <div class = "addWindow">
             <div class = "addWindowContent">
